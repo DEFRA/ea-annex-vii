@@ -1,15 +1,15 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Process_Case" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Process_Case" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="IN_dictConfig" Type="InArgument(scg:Dictionary(x:String, ui:GenericValue))" />
-    <x:Property Name="IN_dictData" Type="InArgument(x:String)" />
+    <x:Property Name="IO_dictData" Type="InOutArgument(scg:Dictionary(x:String, x:String))" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1032,1397</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>898,6303</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Process_Case_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="58">
+    <scg:List x:TypeArguments="x:String" Capacity="30">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -79,7 +79,10 @@
       <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Process_Case" sap:VirtualizedContainerService.HintSize="526,1332" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Process_Case" sap:VirtualizedContainerService.HintSize="526,6238" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="strDataAsTable" />
+    </Sequence.Variables>
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -95,12 +98,8 @@
       <If.Then>
         <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Config Reader" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Sub Flows/Config Reader.xaml">
           <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="IN_strConfigPath">
-              <Literal x:TypeArguments="x:String">Documents\Config\config.xlsx</Literal>
-            </InArgument>
-            <OutArgument x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" x:Key="OUT_dictConfig">
-              <mva:VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" ExpressionText="IN_dictConfig" />
-            </OutArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="IN_strConfigPath">Documents\Config\config.xlsx</InArgument>
+            <OutArgument x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" x:Key="OUT_dictConfig">[IN_dictConfig]</OutArgument>
           </ui:InvokeWorkflowFile.Arguments>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -118,7 +117,180 @@
         <InArgument x:TypeArguments="ui:GenericValue">[string.Format(IN_dictConfig("Process Log Path"), Today.ToString("yyyy_MM MMMM"))]</InArgument>
       </Assign.Value>
     </Assign>
-    <Sequence DisplayName="Private: Open workbook" sap:VirtualizedContainerService.HintSize="484,418" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Open OCRF" sap:VirtualizedContainerService.HintSize="484,66" sap2010:WorkflowViewState.IdRef="Sequence_5">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="x:String" Name="strOCRFPath" />
+        <Variable x:TypeArguments="sd:DataTable" Name="dtaOCRF" />
+        <Variable x:TypeArguments="x:String" Name="strCountry" />
+      </Sequence.Variables>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Assign DisplayName="Set OCRF Path" sap:VirtualizedContainerService.HintSize="438,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[strOCRFPath]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[IN_dictConfig("OCRF File Path").ToString]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <Assign DisplayName="Define Country" sap:VirtualizedContainerService.HintSize="438,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[strCountry]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[string.format(IO_dictData("2 Address").Split({","}, nothing).Last.Trim, VbStrConv.ProperCase)]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="438,208" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" Visible="False" WorkbookPath="[strOCRFPath]">
+        <ui:ExcelApplicationScope.Body>
+          <ActivityAction x:TypeArguments="ui:WorkbookApplication">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
+            </ActivityAction.Argument>
+            <ui:ExcelReadRange AddHeaders="True" DataTable="[dtaOCRF]" DisplayName="Read Range" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="ExcelReadRange_1" Range="A4" SheetName="[strCountry]">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:ExcelReadRange>
+          </ActivityAction>
+        </ui:ExcelApplicationScope.Body>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </ui:ExcelApplicationScope>
+      <TryCatch DisplayName="Try Filter for Country and Company" sap:VirtualizedContainerService.HintSize="438,478" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <TryCatch.Try>
+          <Sequence DisplayName="Filter by company and store risk rating" sap:VirtualizedContainerService.HintSize="376,251" sap2010:WorkflowViewState.IdRef="Sequence_6">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:FilterDataTable DataTable="[dtaOCRF]" DisplayName="Filter Data Table - for consignee name" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dtaOCRF]" SelectColumnsMode="Keep">
+              <ui:FilterDataTable.Filters>
+                <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                  <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+                    <ui:FilterOperationArgument.Column>
+                      <InArgument x:TypeArguments="x:String">["Company"]</InArgument>
+                    </ui:FilterOperationArgument.Column>
+                    <ui:FilterOperationArgument.Operand>
+                      <InArgument x:TypeArguments="x:String">[IO_dictData("2 Name").Trim]</InArgument>
+                    </ui:FilterOperationArgument.Operand>
+                  </ui:FilterOperationArgument>
+                </scg:List>
+              </ui:FilterDataTable.Filters>
+              <ui:FilterDataTable.SelectColumns>
+                <scg:List x:TypeArguments="InArgument" Capacity="4">
+                  <x:Null />
+                </scg:List>
+              </ui:FilterDataTable.SelectColumns>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:FilterDataTable>
+            <Assign DisplayName="Store risk rating" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[IO_dictData("Risk Rating")]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[dtaOCRF.Rows(0).Item("Risk Rating").ToString.Trim]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </TryCatch.Try>
+        <TryCatch.Catches>
+          <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ActivityAction x:TypeArguments="s:Exception">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+              </ActivityAction.Argument>
+              <Sequence sap:VirtualizedContainerService.HintSize="304,253" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="262,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[exception.GetType.AssemblyQualifiedName]" />
+                <Assign DisplayName="No Match for company" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[IO_dictData("Risk Rating")]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">No match for company name found in OCRF data.</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Sequence>
+            </ActivityAction>
+          </Catch>
+        </TryCatch.Catches>
+      </TryCatch>
+    </Sequence>
+    <ui:ForEach x:TypeArguments="scg:KeyValuePair(x:String, x:String)" CurrentIndex="{x:Null}" DisplayName="For Each data item" sap:VirtualizedContainerService.HintSize="484,194" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[IO_dictData]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="scg:KeyValuePair(x:String, x:String)">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="scg:KeyValuePair(x:String, x:String)" Name="item" />
+          </ActivityAction.Argument>
+          <Assign DisplayName="Build up HTML table" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[strDataAsTable]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">[strDataAsTable &amp; "&lt;tr&gt;&lt;td&gt;" &amp; item.Key &amp; "&lt;/td&gt;&lt;td&gt;" &amp; item.Value &amp; "&lt;/td&gt;&lt;/tr&gt;"]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </ActivityAction>
+      </ui:ForEach.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEach>
+    <If Condition="[IN_dictConfig(&quot;Breakpoint 1&quot;)]" DisplayName="If pause point 1" sap:VirtualizedContainerService.HintSize="484,235" sap2010:WorkflowViewState.IdRef="If_3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsPinned">True</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <If.Then>
+        <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Pausepoint" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Sub Flows\Pausepoint.xaml">
+          <ui:InvokeWorkflowFile.Arguments>
+            <InArgument x:TypeArguments="x:String" x:Key="IN_strFormTitle">Pause point 1</InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="IN_strFormBody">["Please check the below data to establish it has been extracted corrected and that the risk rating has been correctly identified: &lt;br&gt;&lt;br&gt;" &amp; "&lt;table&gt;" &amp; strDataAsTable &amp; "&lt;/table&gt;"]</InArgument>
+          </ui:InvokeWorkflowFile.Arguments>
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsPinned">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </ui:InvokeWorkflowFile>
+      </If.Then>
+    </If>
+    <Sequence DisplayName="Private: Open workbook" sap:VirtualizedContainerService.HintSize="484,5156" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <Sequence.Variables>
         <Variable x:TypeArguments="ss:SecureString" Name="secProcessLogPassword" />
         <Variable x:TypeArguments="x:String" Name="strProcessLogPassword" />
@@ -129,66 +301,246 @@
           <x:Boolean x:Key="IsPinned">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:GetRobotCredential TimeoutMS="{x:Null}" Username="{x:Null}" AssetName="Process Log Password" DisplayName="Private: Get Credential" FolderPath="[IN_dictConfig(&quot;Orchestrator Folder Path&quot;)]" sap:VirtualizedContainerService.HintSize="434,22" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[secProcessLogPassword]" />
-      <Assign DisplayName="Private: Add date to password" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_2">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[strProcessLogPassword]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[string.format(new system.net.NetworkCredential("",secProcessLogPassword).Password, Today.ToString("MM"))]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <ui:ExcelApplicationScope CreateNewFile="False" DisplayName="Private: Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,164" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" Password="[strProcessLogPassword]" Visible="False" WorkbookPath="[IN_dictConfig(&quot;Process Log Path&quot;)]">
-        <ui:ExcelApplicationScope.Body>
-          <ActivityAction x:TypeArguments="ui:WorkbookApplication">
-            <ActivityAction.Argument>
-              <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
-            </ActivityAction.Argument>
-          </ActivityAction>
-        </ui:ExcelApplicationScope.Body>
+      <TryCatch DisplayName="Try Get credential" sap:VirtualizedContainerService.HintSize="438,441" sap2010:WorkflowViewState.IdRef="TryCatch_2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsPinned">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-      </ui:ExcelApplicationScope>
-    </Sequence>
-    <Sequence DisplayName="Open OCRF" sap:VirtualizedContainerService.HintSize="484,407" sap2010:WorkflowViewState.IdRef="Sequence_5">
-      <Sequence.Variables>
-        <Variable x:TypeArguments="x:String" Name="strOCRFPath" />
-      </Sequence.Variables>
-      <sap:WorkflowViewStateService.ViewState>
-        <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-          <x:Boolean x:Key="IsPinned">True</x:Boolean>
-        </scg:Dictionary>
-      </sap:WorkflowViewStateService.ViewState>
-      <Assign DisplayName="Format for todays date" sap:VirtualizedContainerService.HintSize="434,60" sap2010:WorkflowViewState.IdRef="Assign_3">
-        <Assign.To>
-          <OutArgument x:TypeArguments="x:String">[strOCRFPath]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="x:String">[string.Format(IN_dictConfig("OCRF File Path"), Today.ToString("yyyyMMdd"))]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <ui:ExcelApplicationScope Password="{x:Null}" CreateNewFile="False" DisplayName="Excel Application Scope" sap:VirtualizedContainerService.HintSize="434,215" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_2" Visible="False" WorkbookPath="[strOCRFPath]">
+        <TryCatch.Try>
+          <Sequence DisplayName="Get credential and add date" sap:VirtualizedContainerService.HintSize="304,214" sap2010:WorkflowViewState.IdRef="Sequence_8">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:GetRobotCredential TimeoutMS="{x:Null}" Username="{x:Null}" AssetName="Process Log Password" DisplayName="Private: Get Credential" FolderPath="[IN_dictConfig(&quot;Orchestrator Folder Path&quot;)]" sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[secProcessLogPassword]" />
+            <Assign DisplayName="Private: Add date to password" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <Assign.To>
+                <OutArgument x:TypeArguments="x:String">[strProcessLogPassword]</OutArgument>
+              </Assign.To>
+              <Assign.Value>
+                <InArgument x:TypeArguments="x:String">[string.format(new system.net.NetworkCredential("",secProcessLogPassword).Password, Today.ToString("MM"))]</InArgument>
+              </Assign.Value>
+            </Assign>
+          </Sequence>
+        </TryCatch.Try>
+        <TryCatch.Catches>
+          <Catch x:TypeArguments="s:InvalidOperationException" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ActivityAction x:TypeArguments="s:InvalidOperationException">
+              <ActivityAction.Argument>
+                <DelegateInArgument x:TypeArguments="s:InvalidOperationException" Name="exception" />
+              </ActivityAction.Argument>
+              <ui:InputDialog Options="{x:Null}" DisplayName="Private: Request password" sap:VirtualizedContainerService.HintSize="334,92" sap2010:WorkflowViewState.IdRef="InputDialog_1" IsPassword="True" Label="Please input password for Process Log" Title="Password required">
+                <ui:InputDialog.Result>
+                  <OutArgument x:TypeArguments="x:String">[strProcessLogPassword]</OutArgument>
+                </ui:InputDialog.Result>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:InputDialog>
+            </ActivityAction>
+          </Catch>
+        </TryCatch.Catches>
+      </TryCatch>
+      <ui:ExcelApplicationScope CreateNewFile="False" DisplayName="Private: Excel Application Scope" sap:VirtualizedContainerService.HintSize="438,4583" sap2010:WorkflowViewState.IdRef="ExcelApplicationScope_1" Password="[strProcessLogPassword]" WorkbookPath="[IN_dictConfig(&quot;Process Log Path&quot;)]">
         <ui:ExcelApplicationScope.Body>
           <ActivityAction x:TypeArguments="ui:WorkbookApplication">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="ui:WorkbookApplication" Name="ExcelWorkbookScope" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_4">
+            <Sequence DisplayName="Populate Spreadsheet" sap:VirtualizedContainerService.HintSize="376,4434" sap2010:WorkflowViewState.IdRef="Sequence_9">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="sd:DataTable" Name="dtaAnnexData" />
+                <Variable x:TypeArguments="s:String[]" Name="arrStrDataRow" />
+              </Sequence.Variables>
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
+              <Assign DisplayName="Init DataTable" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_8">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="sd:DataTable">[dtaAnnexData]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="sd:DataTable">[new DataTable()]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <Sequence DisplayName="Build DataRow" sap:VirtualizedContainerService.HintSize="334,4053" sap2010:WorkflowViewState.IdRef="Sequence_10">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="scg:List(x:String)" Name="lisStrDataRow" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <Assign DisplayName="Init List" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_9">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="scg:List(x:String)">[lisStrDataRow]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="scg:List(x:String)">[New List(of String)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Username" sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_1" Item="[Environment.UserName]" />
+                <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add No" sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_2" Item="No" />
+                <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Company" sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_3" Item="[IO_dictData(&quot;1 Name&quot;)]" />
+                <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Name" sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_4" Item="[IO_dictData(&quot;1 Contact person&quot;)]" />
+                <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Date" sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_5" Item="[IO_dictData(&quot;DateReceived&quot;)]" />
+                <AddToCollection x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="From PDF Name" Collection="[lisStrDataRow]" DisplayName="Add Ref Number" sap:VirtualizedContainerService.HintSize="262,53" sap2010:WorkflowViewState.IdRef="AddToCollection`1_6" Item="[IO_dictData(&quot;Ref Number&quot;)]">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                </AddToCollection>
+                <Sequence DisplayName="Box 1 from form" sap:VirtualizedContainerService.HintSize="262,424" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Name" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_7" Item="[IO_dictData(&quot;1 Name&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Address" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_9" Item="[IO_dictData(&quot;1 Address&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Postcode" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_10" Item="[IO_dictData(&quot;1 Address&quot;).ToString.Split({&quot;,&quot;}, nothing).Last]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Contact" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_11" Item="[IO_dictData(&quot;1 Contact person&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Tel" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_12" Item="[IO_dictData(&quot;1 Tel.&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add E-mail" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_13" Item="[IO_dictData(&quot;1 E-mail&quot;)]" />
+                </Sequence>
+                <Sequence DisplayName="Box 2 from form" sap:VirtualizedContainerService.HintSize="262,424" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Name" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_14" Item="[IO_dictData(&quot;2 Name&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Address" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_15" Item="[IO_dictData(&quot;2 Address&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Postcode - BLANK?" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_16" Item=" " />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Contact" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_17" Item="[IO_dictData(&quot;2 Contact person&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Tel" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_18" Item="[IO_dictData(&quot;2 Tel&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Email" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_19" Item="[IO_dictData(&quot;2 Email&quot;)]" />
+                </Sequence>
+                <Sequence DisplayName="Box 3 of form" sap:VirtualizedContainerService.HintSize="262,300" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Bales" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_20" Item="[IO_dictData(&quot;3 3. Actual number of Bales&quot;).Split({&quot;Tonnes&quot;}, nothing)(0).Trim]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Tonnes" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_21" Item="[IO_dictData(&quot;3 3. Actual number of Bales&quot;).Split({&quot;Tonnes&quot;}, Nothing)(1).Trim]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Container No" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_22" Item="[IO_dictData(&quot;3 Container No. &quot;).Split({&quot;Seal No.&quot;}, Nothing)(0).Trim]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Seal No" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_23" Item="[IO_dictData(&quot;3 Container No. &quot;).Split({&quot;Seal No.&quot;}, Nothing)(1).Trim]" />
+                </Sequence>
+                <Sequence DisplayName="Box 4 of form" sap:VirtualizedContainerService.HintSize="262,114" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Date" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_24" Item="[IO_dictData(&quot;4 4. Actual date of shipment&quot;)]" />
+                </Sequence>
+                <Sequence DisplayName="Box 5(a) of form" sap:VirtualizedContainerService.HintSize="262,652" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Name" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_25" Item="[IO_dictData(&quot;5.(a) Name&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Address" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_26" Item="[IO_dictData(&quot;5.(a) Address&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Postcode" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_27" Item="[IO_dictData(&quot;5.(a) Address&quot;).ToString.Split({&quot;,&quot;}, nothing).Last]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Contact" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_28" Item="[IO_dictData(&quot;5.(a) Contact person&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Tel" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_29" Item="[IO_dictData(&quot;5.(a) Tel&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add E-mail" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_30" Item="[IO_dictData(&quot;5.(a) E-mail&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Transport" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_31" Item="[IO_dictData(&quot;5.(a) Means of transport&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Date" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_32" Item="[IO_dictData(&quot;5.(a) Date of transfer&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Not known to be possible without machine learning" Collection="[lisStrDataRow]" DisplayName="Add Signature" sap:VirtualizedContainerService.HintSize="200,64" sap2010:WorkflowViewState.IdRef="AddToCollection`1_33" Item="[IO_dictData(&quot;5.(a) Signature&quot;)]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </AddToCollection>
+                </Sequence>
+                <Sequence DisplayName="Box 5(b) of form" sap:VirtualizedContainerService.HintSize="262,652" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Name" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_34" Item="[IO_dictData(&quot;5.(b) Name&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Address" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_35" Item="[IO_dictData(&quot;5.(b) Address&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Postcode" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_36" Item="[IO_dictData(&quot;5.(b) Address&quot;).ToString.Split({&quot;,&quot;}, nothing).Last]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Contact" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_37" Item="[IO_dictData(&quot;5.(b) Contact person&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Tel" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_38" Item="[IO_dictData(&quot;5.(b) Tel&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add E-mail" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_39" Item="[IO_dictData(&quot;5.(b) E-mail&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Transport" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_40" Item="[IO_dictData(&quot;5.(b) Means of transport&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Date" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_41" Item="[IO_dictData(&quot;5.(b) Date of transfer&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Not known to be possible without machine learning" Collection="[lisStrDataRow]" DisplayName="Add Signature" sap:VirtualizedContainerService.HintSize="200,64" sap2010:WorkflowViewState.IdRef="AddToCollection`1_42" Item="[IO_dictData(&quot;5.(b) Signature&quot;)]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </AddToCollection>
+                </Sequence>
+                <Sequence DisplayName="Box 5(c) of form" sap:VirtualizedContainerService.HintSize="262,652" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Name" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_43" Item="[IO_dictData(&quot;5.(c) Name&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Address" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_44" Item="[IO_dictData(&quot;5.(c) Address&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Postcode" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_45" Item="[IO_dictData(&quot;5.(c) Address&quot;).ToString.Split({&quot;,&quot;}, nothing).Last]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Contact" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_46" Item="[IO_dictData(&quot;5.(c) Contact person&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Tel" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_47" Item="[IO_dictData(&quot;5.(c) Tel&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add E-mail" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_48" Item="[IO_dictData(&quot;5.(c) E-mail&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Transport" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_49" Item="[IO_dictData(&quot;5.(c) Means of transport&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Date" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_50" Item="[IO_dictData(&quot;5.(c) Date of transfer&quot;)]" />
+                  <AddToCollection x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Not known to be possible without machine learning" Collection="[lisStrDataRow]" DisplayName="Add Signature" sap:VirtualizedContainerService.HintSize="200,64" sap2010:WorkflowViewState.IdRef="AddToCollection`1_51" Item="[IO_dictData(&quot;5.(c) Signature&quot;)]">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                  </AddToCollection>
+                </Sequence>
+              </Sequence>
+              <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[arrStrDataRow]" DataTable="[dtaAnnexData]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="AddDataRow_1" />
+              <ui:ExcelAppendRange DataTable="[dtaAnnexData]" DisplayName="Append To Sheet" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="ExcelAppendRange_1" SheetName="Sheet1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:ExcelAppendRange>
             </Sequence>
           </ActivityAction>
         </ui:ExcelApplicationScope.Body>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsPinned">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:ExcelApplicationScope>
