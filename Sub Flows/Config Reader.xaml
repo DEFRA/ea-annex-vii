@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>992,1774</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>907,1673</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Config_Reader_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="48">
@@ -68,7 +68,7 @@
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Read Config" sap:VirtualizedContainerService.HintSize="576,1709" sap2010:WorkflowViewState.IdRef="Sequence_5">
+  <Sequence DisplayName="Read Config" sap:VirtualizedContainerService.HintSize="576,1608" sap2010:WorkflowViewState.IdRef="Sequence_5">
     <Sequence.Variables>
       <Variable x:TypeArguments="sd:DataTable" Name="dtConfig" />
       <Variable x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" Name="dictConfig" />
@@ -245,6 +245,5 @@
         </Catch>
       </TryCatch.Catches>
     </TryCatch>
-    <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="534,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[JSONconvert.SerializeObject(OUT_dictConfig)]" />
   </Sequence>
 </Activity>
