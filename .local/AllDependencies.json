@@ -4733,15 +4733,15 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\m1006109\\.nuget\\packages\\": {}
+    "C:\\Users\\m1005058\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
       "projectUniqueName": "EA-Annex-VII",
       "projectName": "EA-Annex-VII",
-      "projectPath": "C:\\Users\\m1006109\\Downloads\\ea-annex-vii\\.local",
-      "packagesPath": "C:\\Users\\m1006109\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\m1006109\\Downloads\\ea-annex-vii\\.local"
+      "projectPath": "C:\\UiPath\\ea-annex-vii\\.local",
+      "packagesPath": "C:\\Users\\m1005058\\.nuget\\packages\\",
+      "outputPath": "C:\\UiPath\\ea-annex-vii\\.local"
     },
     "frameworks": {
       "net461": {
