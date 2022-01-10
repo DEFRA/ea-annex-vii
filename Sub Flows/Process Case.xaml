@@ -7,7 +7,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>983,3968</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>2616,3973</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Process_Case_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="33">
@@ -87,7 +87,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Process_Case" sap:VirtualizedContainerService.HintSize="805,3903" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Process_Case" sap:VirtualizedContainerService.HintSize="806,3908" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strDataAsTable" />
       <Variable x:TypeArguments="x:String" Name="strExceptionCategories">
@@ -102,7 +102,7 @@
         <x:Boolean x:Key="IsPinned">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If Condition="[IN_dictConfig is Nothing]" DisplayName="If Config is empty" sap:VirtualizedContainerService.HintSize="763,235" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[IN_dictConfig is Nothing]" DisplayName="If Config is empty" sap:VirtualizedContainerService.HintSize="764,235" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -122,7 +122,7 @@
         </ui:InvokeWorkflowFile>
       </If.Then>
     </If>
-    <Sequence DisplayName="Open OCRF" sap:VirtualizedContainerService.HintSize="763,2263" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence DisplayName="Open OCRF" sap:VirtualizedContainerService.HintSize="764,2268" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="strOCRFPath" />
         <Variable x:TypeArguments="sd:DataTable" Name="dtaOCRF" />
@@ -134,7 +134,7 @@
           <x:Boolean x:Key="IsPinned">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="721,1012" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_1" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SecurePassword="[IN_netSharepointCredential.SecurePassword]" SharePointInstanceType="Online" URL="[IN_dictConfig(&quot;Sharepoint URL&quot;)]" UserName="[IN_netSharepointCredential.UserName]">
+      <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="722,1012" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_1" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SecurePassword="[IN_netSharepointCredential.SecurePassword]" SharePointInstanceType="Online" URL="[IN_dictConfig(&quot;Sharepoint URL&quot;)]" UserName="[IN_netSharepointCredential.UserName]">
         <usa:SharepointApplicationScope.Body>
           <ActivityAction x:TypeArguments="us:SharePointContextInfo">
             <ActivityAction.Argument>
@@ -233,29 +233,28 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </usa:SharepointApplicationScope>
-      <If Condition="[IO_dictData.ContainsKey(&quot;Risk Rating&quot;)]" DisplayName="If Risk rating already specified" sap:VirtualizedContainerService.HintSize="721,1119" sap2010:WorkflowViewState.IdRef="If_14">
+      <If Condition="[IO_dictData.ContainsKey(&quot;Risk Rating&quot;)]" DisplayName="If Risk rating already specified" sap:VirtualizedContainerService.HintSize="722,1124" sap2010:WorkflowViewState.IdRef="If_14">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsPinned">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <If.Else>
-          <TryCatch DisplayName="Try Filter for Country and Company" sap:VirtualizedContainerService.HintSize="576,971" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+          <TryCatch DisplayName="Try Filter for Country and Company" sap:VirtualizedContainerService.HintSize="577,976" sap2010:WorkflowViewState.IdRef="TryCatch_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsPinned">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <TryCatch.Try>
-              <Sequence DisplayName="Filter by company and store risk rating" sap:VirtualizedContainerService.HintSize="538,744" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <Sequence DisplayName="Filter by company and store risk rating" sap:VirtualizedContainerService.HintSize="539,749" sap2010:WorkflowViewState.IdRef="Sequence_6">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="496,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[Regex.Replace(IO_dictData(&quot;7 Name&quot;).Trim, environment.NewLine, &quot;&quot;)]" />
-                <ui:FilterDataTable DataTable="[dtaOCRF]" DisplayName="Filter Data Table - for consignee name" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="496,59" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dtaOCRF]" SelectColumnsMode="Keep">
+                <ui:FilterDataTable DataTable="[dtaOCRF]" DisplayName="Filter Data Table - for consignee name" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="497,59" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dtaOCRF]" SelectColumnsMode="Keep">
                   <ui:FilterDataTable.Filters>
                     <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
                       <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
@@ -279,7 +278,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:FilterDataTable>
-                <Switch x:TypeArguments="x:Int32" DisplayName="Switch - number of matches" Expression="[dtaOCRF.Rows.Count]" sap:VirtualizedContainerService.HintSize="496,160" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+                <Switch x:TypeArguments="x:Int32" DisplayName="Switch - number of matches" Expression="[dtaOCRF.Rows.Count]" sap:VirtualizedContainerService.HintSize="497,266" sap2010:WorkflowViewState.IdRef="Switch`1_3">
                   <Switch.Default>
                     <Sequence DisplayName="Request user input" sap:VirtualizedContainerService.HintSize="526,936" sap2010:WorkflowViewState.IdRef="Sequence_55">
                       <Sequence.Variables>
@@ -382,7 +381,7 @@
                   <Throw x:Key="0" DisplayName="Throw index out of range" Exception="[new system.IndexOutOfRangeException(&quot;No matches found&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_6" />
                   <x:Null x:Key="1" />
                 </Switch>
-                <Sequence DisplayName="Store as match" sap:VirtualizedContainerService.HintSize="496,252" sap2010:WorkflowViewState.IdRef="Sequence_54">
+                <Sequence DisplayName="Store as match" sap:VirtualizedContainerService.HintSize="497,252" sap2010:WorkflowViewState.IdRef="Sequence_54">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -409,7 +408,7 @@
               </Sequence>
             </TryCatch.Try>
             <TryCatch.Catches>
-              <Catch x:TypeArguments="s:IndexOutOfRangeException" sap:VirtualizedContainerService.HintSize="542,21" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+              <Catch x:TypeArguments="s:IndexOutOfRangeException" sap:VirtualizedContainerService.HintSize="543,21" sap2010:WorkflowViewState.IdRef="Catch`1_3">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -435,7 +434,7 @@
         </If.Else>
       </If>
     </Sequence>
-    <ui:ForEach x:TypeArguments="scg:KeyValuePair(x:String, x:String)" CurrentIndex="{x:Null}" DisplayName="For Each data item" sap:VirtualizedContainerService.HintSize="763,194" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[IO_dictData]">
+    <ui:ForEach x:TypeArguments="scg:KeyValuePair(x:String, x:String)" CurrentIndex="{x:Null}" DisplayName="For Each data item" sap:VirtualizedContainerService.HintSize="764,194" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[IO_dictData]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="scg:KeyValuePair(x:String, x:String)">
           <ActivityAction.Argument>
@@ -457,7 +456,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEach>
-    <If Condition="[IN_dictConfig(&quot;Breakpoint 1&quot;)]" DisplayName="If pause point 1" sap:VirtualizedContainerService.HintSize="763,235" sap2010:WorkflowViewState.IdRef="If_3">
+    <If Condition="[IN_dictConfig(&quot;Breakpoint 1&quot;)]" DisplayName="If pause point 1" sap:VirtualizedContainerService.HintSize="764,235" sap2010:WorkflowViewState.IdRef="If_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -466,12 +465,8 @@
       <If.Then>
         <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Pausepoint" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Sub Flows\Pausepoint.xaml">
           <ui:InvokeWorkflowFile.Arguments>
-            <InArgument x:TypeArguments="x:String" x:Key="IN_strFormTitle">
-              <Literal x:TypeArguments="x:String">Pause point 1</Literal>
-            </InArgument>
-            <InArgument x:TypeArguments="x:String" x:Key="IN_strFormBody">
-              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;Please check the below data to establish it has been extracted corrected and that the risk rating has been correctly identified: &lt;br&gt;&lt;br&gt;&lt;table&gt;&quot; &amp; strDataAsTable &amp; &quot;&lt;/table&gt;&quot;" />
-            </InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="IN_strFormTitle">Pause point 1</InArgument>
+            <InArgument x:TypeArguments="x:String" x:Key="IN_strFormBody">["Please check the below data to establish it has been extracted corrected and that the risk rating has been correctly identified: &lt;br&gt;&lt;br&gt;&lt;table&gt;" &amp; strDataAsTable &amp; "&lt;/table&gt;"]</InArgument>
           </ui:InvokeWorkflowFile.Arguments>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -481,7 +476,7 @@
         </ui:InvokeWorkflowFile>
       </If.Then>
     </If>
-    <Sequence DisplayName="Private: Open workbook" sap:VirtualizedContainerService.HintSize="763,724" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Private: Open workbook" sap:VirtualizedContainerService.HintSize="764,724" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <Sequence.Variables>
         <Variable x:TypeArguments="ss:SecureString" Name="secProcessLogPassword" />
         <Variable x:TypeArguments="x:String" Name="strProcessLogPassword" />
