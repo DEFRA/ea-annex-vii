@@ -8,7 +8,7 @@
     <x:Property Name="OUT_dictData" Type="OutArgument(scg:Dictionary(x:String, scg:Dictionary(x:String, x:String)))" />
     <x:Property Name="IN_dictConfig" Type="InArgument(scg:Dictionary(x:String, ui:GenericValue))" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1108,11871</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1108,7617</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="26">
@@ -80,7 +80,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Get mail and read attachment data" sap:VirtualizedContainerService.HintSize="1118,11806" sap2010:WorkflowViewState.IdRef="Sequence_7">
+  <Sequence DisplayName="Get mail and read attachment data" sap:VirtualizedContainerService.HintSize="1118,7552" sap2010:WorkflowViewState.IdRef="Sequence_7">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strPDFText" />
       <Variable x:TypeArguments="x:Boolean" Name="booKeyExists" />
@@ -165,7 +165,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </ui:SaveMailAttachments>
     </Sequence>
-    <Sequence sap2010:Annotation.AnnotationText="some clients will email in multiple annex forms in a single pdf&#xA;test data provided showed it may be multiple files with multiple annex forms&#xA;This code will look at each file&#xA;do nothing if there is only 1 page&#xA;split and delete parent if more than 2 pages" DisplayName="Split multi PDF file" sap:VirtualizedContainerService.HintSize="1076,1426" sap2010:WorkflowViewState.IdRef="Sequence_53">
+    <Sequence sap2010:Annotation.AnnotationText="some clients will email in multiple annex forms in a single pdf&#xA;test data provided showed it may be multiple files with multiple annex forms&#xA;This code will look at each file&#xA;do nothing if there is only 1 page&#xA;split and delete parent if more than 2 pages" DisplayName="Split multi PDF file" sap:VirtualizedContainerService.HintSize="1076,704" sap2010:WorkflowViewState.IdRef="Sequence_53">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -173,13 +173,13 @@
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="[intCurrentPage]" DisplayName="For Each File" sap:VirtualizedContainerService.HintSize="575,1247" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[new DirectoryInfo(IN_strAttachmentFolder).GetFiles().OrderBy(function(fi) fi.CreationTime)]">
+      <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="[intCurrentPage]" DisplayName="For Each File" sap:VirtualizedContainerService.HintSize="575,525" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[new DirectoryInfo(IN_strAttachmentFolder).GetFiles().OrderBy(function(fi) fi.CreationTime)]">
         <ui:ForEach.Body>
           <ActivityAction x:TypeArguments="si:FileInfo">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="si:FileInfo" Name="file" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Split File" sap:VirtualizedContainerService.HintSize="539,1113" sap2010:WorkflowViewState.IdRef="Sequence_52">
+            <Sequence DisplayName="Split File" sap:VirtualizedContainerService.HintSize="539,391" sap2010:WorkflowViewState.IdRef="Sequence_52">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:Int32" Name="intPageCount" />
                 <Variable x:TypeArguments="x:Int32" Name="intLoop" />
@@ -197,7 +197,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </upap:GetPDFPageCount>
-              <Switch x:TypeArguments="x:Boolean" DisplayName="Switch multi page" Expression="[intPageCount &gt; 1]" sap:VirtualizedContainerService.HintSize="497,860" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+              <Switch x:TypeArguments="x:Boolean" DisplayName="Switch multi page" Expression="[intPageCount &gt; 1]" sap:VirtualizedContainerService.HintSize="497,138" sap2010:WorkflowViewState.IdRef="Switch`1_1">
                 <Switch.Default>
                   <ui:Continue sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Continue_1" />
                 </Switch.Default>
@@ -222,7 +222,7 @@
                       <InArgument x:TypeArguments="x:Int32">0</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <ui:InterruptibleWhile DisplayName="While - page cycle " sap:VirtualizedContainerService.HintSize="412,484" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+                  <ui:InterruptibleWhile DisplayName="While - page cycle " sap:VirtualizedContainerService.HintSize="412,448" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
                     <ui:InterruptibleWhile.Body>
                       <Sequence DisplayName="find and extract page" sap:VirtualizedContainerService.HintSize="376,279" sap2010:WorkflowViewState.IdRef="Sequence_50">
                         <sap:WorkflowViewStateService.ViewState>
@@ -271,13 +271,13 @@
         </sap:WorkflowViewStateService.ViewState>
       </ui:ForEach>
     </Sequence>
-    <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="[intCurrentPage]" DisplayName="For Each File" sap:VirtualizedContainerService.HintSize="1076,9416" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[new DirectoryInfo(IN_strAttachmentFolder).GetFiles().OrderBy(function(fi) fi.CreationTime)]">
+    <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="[intCurrentPage]" DisplayName="For Each File" sap:VirtualizedContainerService.HintSize="1076,5884" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[new DirectoryInfo(IN_strAttachmentFolder).GetFiles().OrderBy(function(fi) fi.CreationTime)]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="si:FileInfo">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="si:FileInfo" Name="file" />
           </ActivityAction.Argument>
-          <TryCatch DisplayName="Try Extract Data" sap:VirtualizedContainerService.HintSize="1040,9282" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+          <TryCatch DisplayName="Try Extract Data" sap:VirtualizedContainerService.HintSize="1040,5750" sap2010:WorkflowViewState.IdRef="TryCatch_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -285,7 +285,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <TryCatch.Try>
-              <Sequence DisplayName="Extract data" sap:VirtualizedContainerService.HintSize="1002,9011" sap2010:WorkflowViewState.IdRef="Sequence_27">
+              <Sequence DisplayName="Extract data" sap:VirtualizedContainerService.HintSize="1002,5479" sap2010:WorkflowViewState.IdRef="Sequence_27">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))" Name="dicResults" />
                   <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="ienEleDescendants" />
@@ -336,7 +336,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:OpenApplication>
-                <Sequence DisplayName="Regex for values" sap:VirtualizedContainerService.HintSize="960,7110" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                <Sequence DisplayName="Regex for values" sap:VirtualizedContainerService.HintSize="960,3578" sap2010:WorkflowViewState.IdRef="Sequence_30">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="x:String" Name="strBoxText" />
                   </Sequence.Variables>
@@ -374,7 +374,7 @@
                         <OutArgument x:TypeArguments="x:String">[strBoxText]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">[Regex.Match(strFullText, "(?&lt;=1\. Person who arranges the shipment ).*?(?=2\. Import\/consignee)", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value]</InArgument>
+                        <InArgument x:TypeArguments="x:String">[Regex.Match(strFullText, "(?&lt;=1\. Person).*?(?=2\. Import)", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value]</InArgument>
                       </Assign.Value>
                     </Assign>
                     <Assign DisplayName="Store Name" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_43">
@@ -440,7 +440,7 @@
                         <OutArgument x:TypeArguments="x:String">[strBoxText]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">[Regex.Match(strFullText, "(?&lt;=2\. Import\/consignee).*?(?=3\. Actual number of Bales)", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value]</InArgument>
+                        <InArgument x:TypeArguments="x:String">[Regex.Match(strFullText, "(?&lt;=2\. Import).*?(?=3\. Actual number)", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value]</InArgument>
                       </Assign.Value>
                     </Assign>
                     <Assign DisplayName="Store Name" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_49">
@@ -612,7 +612,7 @@
                         <OutArgument x:TypeArguments="x:String">[strBoxText]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">[Regex.Match(strFullText, "(?&lt;=5\.\(a\) 1st carrier ).*?(?=5\.\(b\))", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value]</InArgument>
+                        <InArgument x:TypeArguments="x:String">[Regex.Match(strFullText, "(?&lt;=5\.\(a\)).*?(?=5\.\(b\))", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value]</InArgument>
                       </Assign.Value>
                     </Assign>
                     <Assign DisplayName="Store Name" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_71">
@@ -684,7 +684,7 @@
                         <OutArgument x:TypeArguments="x:String">[strBoxText]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">[Regex.Match(strFullText, "(?&lt;=5\.\(b\) 2nd carrier ).*?(?=5\.\(c\))", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value]</InArgument>
+                        <InArgument x:TypeArguments="x:String">[Regex.Match(strFullText, "(?&lt;=5\.\(b\)).*?(?=5\.\(c\))", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value]</InArgument>
                       </Assign.Value>
                     </Assign>
                     <Assign DisplayName="Store Name" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_79">
@@ -756,7 +756,7 @@
                         <OutArgument x:TypeArguments="x:String">[strBoxText]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">[Regex.Match(strFullText, "(?&lt;=5\.\(c\) 3rd carrier ).*?(?=6\.)", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value]</InArgument>
+                        <InArgument x:TypeArguments="x:String">[Regex.Match(strFullText, "(?&lt;=5\.\(c\)).*?(?=6\.)", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value]</InArgument>
                       </Assign.Value>
                     </Assign>
                     <Assign DisplayName="Store Name" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_137">
@@ -816,11 +816,11 @@
                       </Assign.Value>
                     </Assign>
                   </Sequence>
-                  <Sequence DisplayName="Box 6" sap:VirtualizedContainerService.HintSize="918,900" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                  <Sequence DisplayName="Box 6" sap:VirtualizedContainerService.HintSize="918,66" sap2010:WorkflowViewState.IdRef="Sequence_37">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <Assign DisplayName="Store Box 6" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_94">
@@ -828,7 +828,7 @@
                         <OutArgument x:TypeArguments="x:String">[strBoxText]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">[Regex.Match(strFullText, "(?&lt;=6\. Waste generator ).*?(?=8\.)", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value]</InArgument>
+                        <InArgument x:TypeArguments="x:String">[Regex.Match(strFullText, "(?&lt;=6\. Waste).*?(?=8\.)", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value]</InArgument>
                       </Assign.Value>
                     </Assign>
                     <Assign DisplayName="Store Name" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_95">
@@ -882,11 +882,11 @@
                       </Assign.Value>
                     </Assign>
                   </Sequence>
-                  <Sequence DisplayName="Box 7" sap:VirtualizedContainerService.HintSize="918,1396" sap2010:WorkflowViewState.IdRef="Sequence_38">
+                  <Sequence DisplayName="Box 7" sap:VirtualizedContainerService.HintSize="918,66" sap2010:WorkflowViewState.IdRef="Sequence_38">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <Assign DisplayName="Store Box 7" sap:VirtualizedContainerService.HintSize="876,60" sap2010:WorkflowViewState.IdRef="Assign_100">
@@ -1004,11 +1004,11 @@
                       </Assign.Value>
                     </Assign>
                   </Sequence>
-                  <Sequence DisplayName="Box 8" sap:VirtualizedContainerService.HintSize="918,500" sap2010:WorkflowViewState.IdRef="Sequence_39">
+                  <Sequence DisplayName="Box 8" sap:VirtualizedContainerService.HintSize="918,66" sap2010:WorkflowViewState.IdRef="Sequence_39">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <Assign DisplayName="Store Box 8" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_106">
@@ -1016,7 +1016,7 @@
                         <OutArgument x:TypeArguments="x:String">[strBoxText]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">[Regex.Match(strFullText, "(?&lt;=8\. Recovery operation).*?(?=9\.)", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value]</InArgument>
+                        <InArgument x:TypeArguments="x:String">[Regex.Match(strFullText, "(?&lt;=8\. Recovery).*?(?=9\.)", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value]</InArgument>
                       </Assign.Value>
                     </Assign>
                     <Assign DisplayName="Store R-code.D-code (4)" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_107">
@@ -1062,11 +1062,11 @@
                       </Assign.Value>
                     </Assign>
                   </Sequence>
-                  <Sequence DisplayName="Box 10" sap:VirtualizedContainerService.HintSize="918,1000" sap2010:WorkflowViewState.IdRef="Sequence_41">
+                  <Sequence DisplayName="Box 10" sap:VirtualizedContainerService.HintSize="918,66" sap2010:WorkflowViewState.IdRef="Sequence_41">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                        <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                        <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                        <x:Boolean x:Key="IsPinned">False</x:Boolean>
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <Assign DisplayName="Store Box 10" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_109">
@@ -1074,7 +1074,7 @@
                         <OutArgument x:TypeArguments="x:String">[strBoxText]</OutArgument>
                       </Assign.To>
                       <Assign.Value>
-                        <InArgument x:TypeArguments="x:String">[Regex.Match(strFullText, "(?&lt;=10\. Waste identification \(fill in relevant codes\):).*?(?=11\.)", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value]</InArgument>
+                        <InArgument x:TypeArguments="x:String">[Regex.Match(strFullText, "(?&lt;=10\. Waste identification).*?(?=11\.)", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value]</InArgument>
                       </Assign.Value>
                     </Assign>
                     <Assign DisplayName="Store Basel Annex IX" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_110">
@@ -1127,7 +1127,7 @@
                         <InArgument x:TypeArguments="x:String">[Regex.Match(strBoxText, "(?&lt;=EC list of waste:).*?(?=\(vi\))", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value.Trim]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <Assign DisplayName="Store (vi) National Code" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_115">
+                    <Assign DisplayName="Store (vi) National Code" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_115">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:String">[OUT_dictData("Page " &amp; intCurrentPage + 1)("10 (vi) National Code")]</OutArgument>
                       </Assign.To>
