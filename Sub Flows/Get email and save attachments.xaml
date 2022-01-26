@@ -8,7 +8,7 @@
     <x:Property Name="OUT_dictData" Type="OutArgument(scg:Dictionary(x:String, scg:Dictionary(x:String, x:String)))" />
     <x:Property Name="IN_dictConfig" Type="InArgument(scg:Dictionary(x:String, ui:GenericValue))" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1108,11871</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1108,11149</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="26">
@@ -80,7 +80,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Get mail and read attachment data" sap:VirtualizedContainerService.HintSize="1118,11806" sap2010:WorkflowViewState.IdRef="Sequence_7">
+  <Sequence DisplayName="Get mail and read attachment data" sap:VirtualizedContainerService.HintSize="1118,11084" sap2010:WorkflowViewState.IdRef="Sequence_7">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strPDFText" />
       <Variable x:TypeArguments="x:Boolean" Name="booKeyExists" />
@@ -165,7 +165,7 @@
         </sap:WorkflowViewStateService.ViewState>
       </ui:SaveMailAttachments>
     </Sequence>
-    <Sequence sap2010:Annotation.AnnotationText="some clients will email in multiple annex forms in a single pdf&#xA;test data provided showed it may be multiple files with multiple annex forms&#xA;This code will look at each file&#xA;do nothing if there is only 1 page&#xA;split and delete parent if more than 2 pages" DisplayName="Split multi PDF file" sap:VirtualizedContainerService.HintSize="1076,1426" sap2010:WorkflowViewState.IdRef="Sequence_53">
+    <Sequence sap2010:Annotation.AnnotationText="some clients will email in multiple annex forms in a single pdf&#xA;test data provided showed it may be multiple files with multiple annex forms&#xA;This code will look at each file&#xA;do nothing if there is only 1 page&#xA;split and delete parent if more than 2 pages" DisplayName="Split multi PDF file" sap:VirtualizedContainerService.HintSize="1076,704" sap2010:WorkflowViewState.IdRef="Sequence_53">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -173,13 +173,13 @@
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="[intCurrentPage]" DisplayName="For Each File" sap:VirtualizedContainerService.HintSize="575,1247" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[new DirectoryInfo(IN_strAttachmentFolder).GetFiles().OrderBy(function(fi) fi.CreationTime)]">
+      <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="[intCurrentPage]" DisplayName="For Each File" sap:VirtualizedContainerService.HintSize="575,525" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[new DirectoryInfo(IN_strAttachmentFolder).GetFiles().OrderBy(function(fi) fi.CreationTime)]">
         <ui:ForEach.Body>
           <ActivityAction x:TypeArguments="si:FileInfo">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="si:FileInfo" Name="file" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Split File" sap:VirtualizedContainerService.HintSize="539,1113" sap2010:WorkflowViewState.IdRef="Sequence_52">
+            <Sequence DisplayName="Split File" sap:VirtualizedContainerService.HintSize="539,391" sap2010:WorkflowViewState.IdRef="Sequence_52">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:Int32" Name="intPageCount" />
                 <Variable x:TypeArguments="x:Int32" Name="intLoop" />
@@ -197,7 +197,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </upap:GetPDFPageCount>
-              <Switch x:TypeArguments="x:Boolean" DisplayName="Switch multi page" Expression="[intPageCount &gt; 1]" sap:VirtualizedContainerService.HintSize="497,860" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+              <Switch x:TypeArguments="x:Boolean" DisplayName="Switch multi page" Expression="[intPageCount &gt; 1]" sap:VirtualizedContainerService.HintSize="497,138" sap2010:WorkflowViewState.IdRef="Switch`1_1">
                 <Switch.Default>
                   <ui:Continue sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Continue_1" />
                 </Switch.Default>
@@ -305,7 +305,7 @@
                     <InArgument x:TypeArguments="si:FileInfo">[file]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <ui:OpenApplication ApplicationWindow="{x:Null}" WorkingDirectory="{x:Null}" Arguments="[fileCurrentFile.FullName]" DisplayName="Open Application 'AcroRd32.exe Nevis'" FileName="C:\Program Files\Adobe\Reader 11.0\Reader\AcroRd32.exe" sap:VirtualizedContainerService.HintSize="960,292" sap2010:WorkflowViewState.IdRef="OpenApplication_2" InformativeScreenshot="a617318a63a1e22610ba6c0e192a0453" Selector="&lt;wnd app='acrord*.exe' cls='AcrobatSDIWindow' /&gt;" TimeoutMS="3000">
+                <ui:OpenApplication ApplicationWindow="{x:Null}" WorkingDirectory="{x:Null}" Arguments="[fileCurrentFile.FullName]" DisplayName="Open Application 'AcroRd32.exe Nevis'" FileName="[IN_dictConfig(&quot;Adobe File Path&quot;)]" sap:VirtualizedContainerService.HintSize="960,292" sap2010:WorkflowViewState.IdRef="OpenApplication_2" InformativeScreenshot="a617318a63a1e22610ba6c0e192a0453" Selector="&lt;wnd app='acrord*.exe' cls='AcrobatSDIWindow' /&gt;" TimeoutMS="3000">
                   <ui:OpenApplication.Body>
                     <ActivityAction x:TypeArguments="x:Object">
                       <ActivityAction.Argument>
@@ -1127,7 +1127,7 @@
                         <InArgument x:TypeArguments="x:String">[Regex.Match(strBoxText, "(?&lt;=EC list of waste:).*?(?=\(vi\))", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value.Trim]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <Assign DisplayName="Store (vi) National Code" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_115">
+                    <Assign DisplayName="Store (vi) National Code" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_115">
                       <Assign.To>
                         <OutArgument x:TypeArguments="x:String">[OUT_dictData("Page " &amp; intCurrentPage + 1)("10 (vi) National Code")]</OutArgument>
                       </Assign.To>

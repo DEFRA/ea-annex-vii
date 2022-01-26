@@ -7,7 +7,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>2616,3973</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>796,10844</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Process_Case_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="33">
@@ -87,7 +87,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Process_Case" sap:VirtualizedContainerService.HintSize="806,3908" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Process_Case" sap:VirtualizedContainerService.HintSize="806,10779" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strDataAsTable" />
       <Variable x:TypeArguments="x:String" Name="strExceptionCategories">
@@ -122,7 +122,7 @@
         </ui:InvokeWorkflowFile>
       </If.Then>
     </If>
-    <Sequence DisplayName="Open OCRF" sap:VirtualizedContainerService.HintSize="764,2268" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence DisplayName="Open OCRF" sap:VirtualizedContainerService.HintSize="764,2162" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="strOCRFPath" />
         <Variable x:TypeArguments="sd:DataTable" Name="dtaOCRF" />
@@ -233,21 +233,21 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </usa:SharepointApplicationScope>
-      <If Condition="[IO_dictData.ContainsKey(&quot;Risk Rating&quot;)]" DisplayName="If Risk rating already specified" sap:VirtualizedContainerService.HintSize="722,1124" sap2010:WorkflowViewState.IdRef="If_14">
+      <If Condition="[IO_dictData.ContainsKey(&quot;Risk Rating&quot;)]" DisplayName="If Risk rating already specified" sap:VirtualizedContainerService.HintSize="722,1018" sap2010:WorkflowViewState.IdRef="If_14">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsPinned">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <If.Else>
-          <TryCatch DisplayName="Try Filter for Country and Company" sap:VirtualizedContainerService.HintSize="577,976" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+          <TryCatch DisplayName="Try Filter for Country and Company" sap:VirtualizedContainerService.HintSize="577,870" sap2010:WorkflowViewState.IdRef="TryCatch_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsPinned">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <TryCatch.Try>
-              <Sequence DisplayName="Filter by company and store risk rating" sap:VirtualizedContainerService.HintSize="539,749" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <Sequence DisplayName="Filter by company and store risk rating" sap:VirtualizedContainerService.HintSize="539,643" sap2010:WorkflowViewState.IdRef="Sequence_6">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -278,7 +278,7 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:FilterDataTable>
-                <Switch x:TypeArguments="x:Int32" DisplayName="Switch - number of matches" Expression="[dtaOCRF.Rows.Count]" sap:VirtualizedContainerService.HintSize="497,266" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+                <Switch x:TypeArguments="x:Int32" DisplayName="Switch - number of matches" Expression="[dtaOCRF.Rows.Count]" sap:VirtualizedContainerService.HintSize="497,160" sap2010:WorkflowViewState.IdRef="Switch`1_3">
                   <Switch.Default>
                     <Sequence DisplayName="Request user input" sap:VirtualizedContainerService.HintSize="526,936" sap2010:WorkflowViewState.IdRef="Sequence_55">
                       <Sequence.Variables>
@@ -476,7 +476,7 @@
         </ui:InvokeWorkflowFile>
       </If.Then>
     </If>
-    <Sequence DisplayName="Private: Open workbook" sap:VirtualizedContainerService.HintSize="764,724" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Private: Open workbook" sap:VirtualizedContainerService.HintSize="764,7701" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <Sequence.Variables>
         <Variable x:TypeArguments="ss:SecureString" Name="secProcessLogPassword" />
         <Variable x:TypeArguments="x:String" Name="strProcessLogPassword" />
@@ -488,7 +488,7 @@
           <x:Boolean x:Key="IsPinned">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <Assign DisplayName="Store email date" sap:VirtualizedContainerService.HintSize="438,60" sap2010:WorkflowViewState.IdRef="Assign_36">
+      <Assign DisplayName="Store email date" sap:VirtualizedContainerService.HintSize="689,60" sap2010:WorkflowViewState.IdRef="Assign_36">
         <Assign.To>
           <OutArgument x:TypeArguments="s:DateTime">[dateEmailDate]</OutArgument>
         </Assign.To>
@@ -496,7 +496,7 @@
           <InArgument x:TypeArguments="s:DateTime">[datetime.ParseExact(IO_dictData("DateReceived"), "dd.MM.yyyy", new system.Globalization.CultureInfo("En"))]</InArgument>
         </Assign.Value>
       </Assign>
-      <TryCatch DisplayName="Try Get credential" sap:VirtualizedContainerService.HintSize="438,441" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+      <TryCatch DisplayName="Try Get credential" sap:VirtualizedContainerService.HintSize="689,441" sap2010:WorkflowViewState.IdRef="TryCatch_2">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -547,13 +547,13 @@
           </Catch>
         </TryCatch.Catches>
       </TryCatch>
-      <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="438,51" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_2" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SecurePassword="[IN_netSharepointCredential.SecurePassword]" SharePointInstanceType="Online" URL="[IN_dictConfig(&quot;Sharepoint URL&quot;)]" UserName="[IN_netSharepointCredential.UserName]">
+      <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="689,7028" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_2" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SecurePassword="[IN_netSharepointCredential.SecurePassword]" SharePointInstanceType="Online" URL="[IN_dictConfig(&quot;Sharepoint URL&quot;)]" UserName="[IN_netSharepointCredential.UserName]">
         <usa:SharepointApplicationScope.Body>
           <ActivityAction x:TypeArguments="us:SharePointContextInfo">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="us:SharePointContextInfo" Name="SharePointContextInfoTag" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Get Log" sap:VirtualizedContainerService.HintSize="602,1661" sap2010:WorkflowViewState.IdRef="Sequence_47">
+            <Sequence DisplayName="Get Log" sap:VirtualizedContainerService.HintSize="655,6887" sap2010:WorkflowViewState.IdRef="Sequence_47">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:String" Name="strLogPath" />
                 <Variable x:TypeArguments="x:String" Name="strLogSharepointPath" />
@@ -568,7 +568,7 @@
                   <x:Boolean x:Key="IsPinned">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <Assign DisplayName="Set Log Path" sap:VirtualizedContainerService.HintSize="560,60" sap2010:WorkflowViewState.IdRef="Assign_10">
+              <Assign DisplayName="Set Log Path" sap:VirtualizedContainerService.HintSize="613,60" sap2010:WorkflowViewState.IdRef="Assign_10">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[strLogPath]</OutArgument>
                 </Assign.To>
@@ -576,7 +576,7 @@
                   <InArgument x:TypeArguments="x:String">[string.format(IN_dictConfig("Process Log Path"), Environment.UserName)]</InArgument>
                 </Assign.Value>
               </Assign>
-              <Assign DisplayName="Set log sharepoint path" sap:VirtualizedContainerService.HintSize="560,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+              <Assign DisplayName="Set log sharepoint path" sap:VirtualizedContainerService.HintSize="613,60" sap2010:WorkflowViewState.IdRef="Assign_11">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:String">[strLogSharepointPath]</OutArgument>
                 </Assign.To>
@@ -584,14 +584,14 @@
                   <InArgument x:TypeArguments="x:String">[string.Format(IN_dictConfig("Process Log Sharepoint Path"), dateEmailDate.Year.ToString, dateEmailDate.ToString("yyyy_MM MMM"))]</InArgument>
                 </Assign.Value>
               </Assign>
-              <Sequence DisplayName="Build DataRow" sap:VirtualizedContainerService.HintSize="560,66" sap2010:WorkflowViewState.IdRef="Sequence_45">
+              <Sequence DisplayName="Build DataRow" sap:VirtualizedContainerService.HintSize="613,5292" sap2010:WorkflowViewState.IdRef="Sequence_45">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="scg:List(x:String)" Name="lisStrDataRow" />
                 </Sequence.Variables>
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
                 <Assign DisplayName="Init DataTable" sap:VirtualizedContainerService.HintSize="571,60" sap2010:WorkflowViewState.IdRef="Assign_12">
@@ -731,7 +731,7 @@
                   <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Tel" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_141" Item="[IO_dictData(&quot;6 Tel&quot;)]" />
                   <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add E-mail" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_142" Item="[IO_dictData(&quot;6 E-mail&quot;)]" />
                 </Sequence>
-                <Sequence DisplayName="Box 7 of form" sap:VirtualizedContainerService.HintSize="571,610" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                <Sequence DisplayName="Box 7 of form" sap:VirtualizedContainerService.HintSize="242,610" sap2010:WorkflowViewState.IdRef="Sequence_37">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -741,7 +741,7 @@
                   <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Name" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_143" Item="[IO_dictData(&quot;7 Name&quot;)]" />
                   <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Type" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_144" Item="[IO_dictData(&quot;7 Recovery facility&quot;)]" />
                   <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Address" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_145" Item="[IO_dictData(&quot;7 Address&quot;)]" />
-                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Country" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_146" Item="[IO_dictData(&quot;7 Address&quot;).ToString.Split({&quot;,&quot;}, nothing).Last]" />
+                  <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Country" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_146" Item="[IO_dictData(&quot;7 Country&quot;).ToString]" />
                   <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Postcode - BLANK" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_147" Item=" " />
                   <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Contact" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_148" Item="[IO_dictData(&quot;7 Contact Person&quot;)]" />
                   <AddToCollection x:TypeArguments="x:String" Collection="[lisStrDataRow]" DisplayName="Add Tel" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_149" Item="[IO_dictData(&quot;7 Tel&quot;)]" />
@@ -897,14 +897,14 @@
                 </ui:ForEach>
                 <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[arrStrDataRow]" DataTable="[dtaAnnexData]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="571,22" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
               </Sequence>
-              <usal:CheckOutFile AttachmentsAction="{x:Null}" LocalPathHintText="{x:Null}" RelativeUrlHintText="{x:Null}" ChooseFile="False" DisplayName="Check out file" sap:VirtualizedContainerService.HintSize="560,70" sap2010:WorkflowViewState.IdRef="CheckOutFile_2" RelativeUrl="[strLogSharepointPath]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="False" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False">
+              <usal:CheckOutFile AttachmentsAction="{x:Null}" LocalPathHintText="{x:Null}" RelativeUrlHintText="{x:Null}" ChooseFile="False" DisplayName="Check out file" sap:VirtualizedContainerService.HintSize="613,70" sap2010:WorkflowViewState.IdRef="CheckOutFile_2" RelativeUrl="[strLogSharepointPath]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="False" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsPinned">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </usal:CheckOutFile>
-              <usal:GetFile AttachmentsAction="{x:Null}" RelativeUrlHintText="{x:Null}" ChooseFile="False" DisplayName="Get file" sap:VirtualizedContainerService.HintSize="560,104" sap2010:WorkflowViewState.IdRef="GetFile_3" LocalPath="[strLogPath]" LocalPathHintText="Local path where the file will be saved" RelativeUrl="[strLogSharepointPath]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False">
+              <usal:GetFile AttachmentsAction="{x:Null}" RelativeUrlHintText="{x:Null}" ChooseFile="False" DisplayName="Get file" sap:VirtualizedContainerService.HintSize="613,104" sap2010:WorkflowViewState.IdRef="GetFile_3" LocalPath="[strLogPath]" LocalPathHintText="Local path where the file will be saved" RelativeUrl="[strLogSharepointPath]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -1047,8 +1047,8 @@
         </usa:SharepointApplicationScope.Body>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </usa:SharepointApplicationScope>
