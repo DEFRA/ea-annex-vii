@@ -308,7 +308,7 @@
                     <InArgument x:TypeArguments="si:FileInfo">[file]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <ui:InvokePowerShell x:TypeArguments="sma:PSObject" ContinueOnError="{x:Null}" CommandText="[&quot;$Command = '&quot; &amp; IN_dictConfig(&quot;Adobe File Path&quot;).ToString &amp; &quot;'&quot; &amp; Environment.NewLine &amp; &quot;$Parms = '&quot; &amp; fileCurrentFile.FullName &amp; &quot;'&quot; &amp; Environment.NewLine &amp; &quot;&amp; &quot;&quot;$Command&quot;&quot; $Parms&quot;]" DisplayName="Invoke Power Shell - Open document" sap:VirtualizedContainerService.HintSize="960,59" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_1">
+                <ui:InvokePowerShell x:TypeArguments="sma:PSObject" ContinueOnError="{x:Null}" CommandText="[&quot;$Command = '&quot; &amp; IN_dictConfig(&quot;Adobe File Path&quot;).ToString &amp; &quot;'&quot; &amp; Environment.NewLine &amp; &quot;$Parms = '&quot; &amp; fileCurrentFile.FullName &amp; &quot;'&quot; &amp; Environment.NewLine &amp; &quot;&amp; &quot;&quot;$Command&quot;&quot; $Parms&quot;]" DisplayName="Invoke Power Shell - Open document" sap:VirtualizedContainerService.HintSize="960,59" sap2010:WorkflowViewState.IdRef="InvokePowerShell`1_1" IsScript="True">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsPinned">True</x:Boolean>
