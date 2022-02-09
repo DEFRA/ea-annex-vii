@@ -1,6 +1,6 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Parent_State_Machine" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="991,997" sap2010:WorkflowViewState.IdRef="ReFramework_Example_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:r="clr-namespace:Reusable_Components;assembly=Reusable Components" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:si="clr-namespace:System.IO;assembly=mscorlib" xmlns:sn="clr-namespace:System.Net;assembly=System" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:ufa="clr-namespace:UiPath.Form.Activities;assembly=UiPath.Form.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:us="clr-namespace:UiPathTeam.SharePoint;assembly=UiPathTeam.SharePoint" xmlns:usa="clr-namespace:UiPathTeam.SharePoint.Activities;assembly=UiPathTeam.SharePoint.Activities" xmlns:usal="clr-namespace:UiPathTeam.SharePoint.Activities.Libraries;assembly=UiPathTeam.SharePoint.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Parent_State_Machine" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1070,1205" sap2010:WorkflowViewState.IdRef="ReFramework_Example_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:r="clr-namespace:Reusable_Components;assembly=Reusable Components" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:si="clr-namespace:System.IO;assembly=mscorlib" xmlns:sn="clr-namespace:System.Net;assembly=System" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:ufa="clr-namespace:UiPath.Form.Activities;assembly=UiPath.Form.Activities" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:us="clr-namespace:UiPathTeam.SharePoint;assembly=UiPathTeam.SharePoint" xmlns:usa="clr-namespace:UiPathTeam.SharePoint.Activities;assembly=UiPathTeam.SharePoint.Activities" xmlns:usal="clr-namespace:UiPathTeam.SharePoint.Activities.Libraries;assembly=UiPathTeam.SharePoint.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="60">
+    <scg:List x:TypeArguments="x:String" Capacity="31">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -493,9 +493,9 @@
                     <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="exeSystemException is Nothing" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
                   </Transition.Condition>
                   <Transition.To>
-                    <State x:Name="__ReferenceID3" DisplayName="Process Case" sap:VirtualizedContainerService.HintSize="1572,5681" sap2010:WorkflowViewState.IdRef="State_12">
+                    <State x:Name="__ReferenceID3" DisplayName="Process Case" sap:VirtualizedContainerService.HintSize="1572,5881" sap2010:WorkflowViewState.IdRef="State_12">
                       <State.Entry>
-                        <TryCatch DisplayName="Try Process Case" sap:VirtualizedContainerService.HintSize="851,3317" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                        <TryCatch DisplayName="Try Process Case" sap:VirtualizedContainerService.HintSize="851,3517" sap2010:WorkflowViewState.IdRef="TryCatch_3">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -503,7 +503,11 @@
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
                           <TryCatch.Try>
-                            <Sequence DisplayName="Process Case" sap:VirtualizedContainerService.HintSize="813,3068" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                            <Sequence DisplayName="Process Case" sap:VirtualizedContainerService.HintSize="813,3268" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                              <Sequence.Variables>
+                                <Variable x:TypeArguments="x:String" Name="strAddressCheck" />
+                                <Variable x:TypeArguments="x:String" Name="strMatchedAddress" />
+                              </Sequence.Variables>
                               <sap:WorkflowViewStateService.ViewState>
                                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -536,6 +540,26 @@
                                   </InArgument>
                                 </Assign.Value>
                               </Assign>
+                              <Assign DisplayName="Init Address Check" sap:VirtualizedContainerService.HintSize="771,60" sap2010:WorkflowViewState.IdRef="Assign_77">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[strAddressCheck]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <Literal x:TypeArguments="x:String" Value="" />
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
+                              <Assign DisplayName="Init Matched Address" sap:VirtualizedContainerService.HintSize="771,60" sap2010:WorkflowViewState.IdRef="Assign_78">
+                                <Assign.To>
+                                  <OutArgument x:TypeArguments="x:String">[strMatchedAddress]</OutArgument>
+                                </Assign.To>
+                                <Assign.Value>
+                                  <InArgument x:TypeArguments="x:String">
+                                    <Literal x:TypeArguments="x:String" Value="" />
+                                  </InArgument>
+                                </Assign.Value>
+                              </Assign>
                               <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="771,2174" sap2010:WorkflowViewState.IdRef="ForEach`1_4" Values="[dictPDFsData.Keys]">
                                 <ui:ForEach.Body>
                                   <ActivityAction x:TypeArguments="x:String">
@@ -561,9 +585,21 @@
                                       </Assign>
                                       <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Process Case" sap:VirtualizedContainerService.HintSize="693,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_3" UnSafe="False" WorkflowFileName="Sub Flows/Process Case.xaml">
                                         <ui:InvokeWorkflowFile.Arguments>
-                                          <InArgument x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" x:Key="IN_dictConfig">[dictConfig]</InArgument>
-                                          <InArgument x:TypeArguments="sn:NetworkCredential" x:Key="IN_netSharepointCredential">[credSharepointPassword]</InArgument>
-                                          <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="IO_dictData">[dictData]</InOutArgument>
+                                          <InArgument x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" x:Key="IN_dictConfig">
+                                            <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" ExpressionText="dictConfig" />
+                                          </InArgument>
+                                          <InArgument x:TypeArguments="sn:NetworkCredential" x:Key="IN_netSharepointCredential">
+                                            <mva:VisualBasicValue x:TypeArguments="sn:NetworkCredential" ExpressionText="credSharepointPassword" />
+                                          </InArgument>
+                                          <InOutArgument x:TypeArguments="scg:Dictionary(x:String, x:String)" x:Key="IO_dictData">
+                                            <mva:VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, x:String)" ExpressionText="dictData" />
+                                          </InOutArgument>
+                                          <InOutArgument x:TypeArguments="x:String" x:Key="IO_AddressCheck">
+                                            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="strAddressCheck" />
+                                          </InOutArgument>
+                                          <InOutArgument x:TypeArguments="x:String" x:Key="IO_previousMatchedAddress">
+                                            <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="strMatchedAddress" />
+                                          </InOutArgument>
                                         </ui:InvokeWorkflowFile.Arguments>
                                       </ui:InvokeWorkflowFile>
                                       <Assign DisplayName="Reset Repeat Error" sap:VirtualizedContainerService.HintSize="693,60" sap2010:WorkflowViewState.IdRef="Assign_42">
