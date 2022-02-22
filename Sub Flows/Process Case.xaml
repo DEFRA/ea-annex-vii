@@ -537,7 +537,7 @@
         </ui:InvokeWorkflowFile>
       </If.Then>
     </If>
-    <Sequence DisplayName="Private: Open workbook" sap:VirtualizedContainerService.HintSize="764,7701" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Private: Open workbook" sap:VirtualizedContainerService.HintSize="1210,7701" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <Sequence.Variables>
         <Variable x:TypeArguments="ss:SecureString" Name="secProcessLogPassword" />
         <Variable x:TypeArguments="x:String" Name="strProcessLogPassword" />
