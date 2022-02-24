@@ -3,11 +3,13 @@
     <x:Property Name="IN_dictConfig" Type="InArgument(scg:Dictionary(x:String, ui:GenericValue))" />
     <x:Property Name="IN_netSharepointCredential" Type="InArgument(sn:NetworkCredential)" />
     <x:Property Name="IO_dictData" Type="InOutArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="IO_AddressCheck" Type="InOutArgument(x:String)" />
+    <x:Property Name="IO_previousMatchedAddress" Type="InOutArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>796,10844</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1242,12172</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>Process_Case_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="33">
@@ -87,7 +89,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Process_Case" sap:VirtualizedContainerService.HintSize="806,10779" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="Process_Case" sap:VirtualizedContainerService.HintSize="1252,12107" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strDataAsTable" />
       <Variable x:TypeArguments="x:String" Name="strExceptionCategories">
@@ -102,7 +104,7 @@
         <x:Boolean x:Key="IsPinned">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If Condition="[IN_dictConfig is Nothing]" DisplayName="If Config is empty" sap:VirtualizedContainerService.HintSize="764,235" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[IN_dictConfig is Nothing]" DisplayName="If Config is empty" sap:VirtualizedContainerService.HintSize="1210,235" sap2010:WorkflowViewState.IdRef="If_1">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -122,7 +124,7 @@
         </ui:InvokeWorkflowFile>
       </If.Then>
     </If>
-    <Sequence DisplayName="Open OCRF" sap:VirtualizedContainerService.HintSize="764,2162" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence DisplayName="Open OCRF" sap:VirtualizedContainerService.HintSize="1210,3490" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:String" Name="strOCRFPath" />
         <Variable x:TypeArguments="sd:DataTable" Name="dtaOCRF" />
@@ -134,7 +136,7 @@
           <x:Boolean x:Key="IsPinned">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="722,1012" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_1" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SecurePassword="[IN_netSharepointCredential.SecurePassword]" SharePointInstanceType="Online" URL="[IN_dictConfig(&quot;Sharepoint URL&quot;)]" UserName="[IN_netSharepointCredential.UserName]">
+      <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="1168,1012" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_1" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SecurePassword="[IN_netSharepointCredential.SecurePassword]" SharePointInstanceType="Online" URL="[IN_dictConfig(&quot;Sharepoint URL&quot;)]" UserName="[IN_netSharepointCredential.UserName]">
         <usa:SharepointApplicationScope.Body>
           <ActivityAction x:TypeArguments="us:SharePointContextInfo">
             <ActivityAction.Argument>
@@ -233,28 +235,28 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </usa:SharepointApplicationScope>
-      <If Condition="[IO_dictData.ContainsKey(&quot;Risk Rating&quot;)]" DisplayName="If Risk rating already specified" sap:VirtualizedContainerService.HintSize="722,1018" sap2010:WorkflowViewState.IdRef="If_14">
+      <If Condition="[IO_dictData.ContainsKey(&quot;Risk Rating&quot;)]" DisplayName="If Risk rating already specified" sap:VirtualizedContainerService.HintSize="1168,2346" sap2010:WorkflowViewState.IdRef="If_14">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsPinned">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <If.Else>
-          <TryCatch DisplayName="Try Filter for Country and Company" sap:VirtualizedContainerService.HintSize="577,870" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+          <TryCatch DisplayName="Try Filter for Country and Company" sap:VirtualizedContainerService.HintSize="1023,2198" sap2010:WorkflowViewState.IdRef="TryCatch_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsPinned">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <TryCatch.Try>
-              <Sequence DisplayName="Filter by company and store risk rating" sap:VirtualizedContainerService.HintSize="539,643" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <Sequence DisplayName="Filter by company and store risk rating" sap:VirtualizedContainerService.HintSize="985,1971" sap2010:WorkflowViewState.IdRef="Sequence_6">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     <x:Boolean x:Key="IsPinned">True</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
-                <ui:FilterDataTable DataTable="[dtaOCRF]" DisplayName="Filter Data Table - for consignee name" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="497,59" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dtaOCRF]" SelectColumnsMode="Keep">
+                <ui:FilterDataTable DataTable="[dtaOCRF]" DisplayName="Filter Data Table - for consignee name" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="943,59" sap2010:WorkflowViewState.IdRef="FilterDataTable_1" OutputDataTable="[dtaOCRF]" SelectColumnsMode="Keep">
                   <ui:FilterDataTable.Filters>
                     <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
                       <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
@@ -278,100 +280,159 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:FilterDataTable>
-                <Switch x:TypeArguments="x:Int32" DisplayName="Switch - number of matches" Expression="[dtaOCRF.Rows.Count]" sap:VirtualizedContainerService.HintSize="497,160" sap2010:WorkflowViewState.IdRef="Switch`1_3">
+                <Switch x:TypeArguments="x:Int32" DisplayName="Switch - number of matches" Expression="[dtaOCRF.Rows.Count]" sap:VirtualizedContainerService.HintSize="943,1488" sap2010:WorkflowViewState.IdRef="Switch`1_3">
                   <Switch.Default>
-                    <Sequence DisplayName="Request user input" sap:VirtualizedContainerService.HintSize="526,936" sap2010:WorkflowViewState.IdRef="Sequence_55">
-                      <Sequence.Variables>
-                        <Variable x:TypeArguments="scg:List(x:String)" Name="listStrMatches" />
-                        <Variable x:TypeArguments="x:String" Name="strSelectedOption" />
-                      </Sequence.Variables>
+                    <If Condition="[IO_dictData(&quot;7 Address&quot;) = IO_AddressCheck]" DisplayName="If address is the same as previous, skip" sap:VirtualizedContainerService.HintSize="905,1284" sap2010:WorkflowViewState.IdRef="If_16">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                           <x:Boolean x:Key="IsPinned">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <Assign DisplayName="Init list" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_28">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="scg:List(x:String)">[listStrMatches]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="scg:List(x:String)">[new List(of string)]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                      <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[dtaOCRF]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
-                        <ui:ForEachRow.Body>
-                          <ActivityAction x:TypeArguments="sd:DataRow">
-                            <ActivityAction.Argument>
-                              <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
-                            </ActivityAction.Argument>
-                            <AddToCollection x:TypeArguments="x:String" Collection="[listStrMatches]" DisplayName="Add Address and Code" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_176" Item="[string.join(&quot;;&quot;, {row.Item(&quot;Address&quot;), row.Item(&quot;Activity R Code&quot;)})]" />
-                          </ActivityAction>
-                        </ui:ForEachRow.Body>
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                      </ui:ForEachRow>
-                      <AddToCollection x:TypeArguments="x:String" Collection="[listStrMatches]" DisplayName="Add None of the above" sap:VirtualizedContainerService.HintSize="484,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_181" Item="None of the above" />
-                      <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke OCRF User PopUp" sap:VirtualizedContainerService.HintSize="484,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_4" UnSafe="False" WorkflowFileName="Sub Flows\OCRF User Pop Up.xaml">
-                        <ui:InvokeWorkflowFile.Arguments>
-                          <InArgument x:TypeArguments="scg:List(x:String)" x:Key="IN_listOptions">[listStrMatches]</InArgument>
-                          <OutArgument x:TypeArguments="x:String" x:Key="OUT_strSelectedOption">[strSelectedOption]</OutArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="IN_strCompanyName">[IO_dictData("2 Name")]</InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="IN_strCompanyAddress">[IO_dictData("2 Address")]</InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="IN_strCompanyRCode">[IO_dictData("8 R-code.D-code (4)")]</InArgument>
-                        </ui:InvokeWorkflowFile.Arguments>
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                      </ui:InvokeWorkflowFile>
-                      <If Condition="[strSelectedOption = &quot;None of the above&quot;]" DisplayName="If none of the above" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_13">
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                        <If.Then>
-                          <Throw DisplayName="Throw index out of range" Exception="[new system.IndexOutOfRangeException(&quot;No matches found&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_7" />
-                        </If.Then>
-                      </If>
-                      <ui:FilterDataTable DataTable="[dtaOCRF]" DisplayName="Filter Data Table - for consignee name" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="FilterDataTable_2" OutputDataTable="[dtaOCRF]" SelectColumnsMode="Keep">
-                        <ui:FilterDataTable.Filters>
-                          <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
-                            <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
-                              <ui:FilterOperationArgument.Column>
-                                <InArgument x:TypeArguments="x:String">["Company"]</InArgument>
-                              </ui:FilterOperationArgument.Column>
-                              <ui:FilterOperationArgument.Operand>
-                                <InArgument x:TypeArguments="x:String">[IO_dictData("2 Name").Trim]</InArgument>
-                              </ui:FilterOperationArgument.Operand>
-                            </ui:FilterOperationArgument>
-                            <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
-                              <ui:FilterOperationArgument.Column>
-                                <InArgument x:TypeArguments="x:String">["Address"]</InArgument>
-                              </ui:FilterOperationArgument.Column>
-                              <ui:FilterOperationArgument.Operand>
-                                <InArgument x:TypeArguments="x:String">[strSelectedOption.Split({";"}, nothing)(0)]</InArgument>
-                              </ui:FilterOperationArgument.Operand>
-                            </ui:FilterOperationArgument>
-                          </scg:List>
-                        </ui:FilterDataTable.Filters>
-                        <ui:FilterDataTable.SelectColumns>
-                          <scg:List x:TypeArguments="InArgument" Capacity="4">
-                            <x:Null />
-                          </scg:List>
-                        </ui:FilterDataTable.SelectColumns>
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                      </ui:FilterDataTable>
-                    </Sequence>
+                      <If.Then>
+                        <ui:FilterDataTable DataTable="[dtaOCRF]" DisplayName="Filter Data Table - for consignee name" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="334,59" sap2010:WorkflowViewState.IdRef="FilterDataTable_5" OutputDataTable="[dtaOCRF]" SelectColumnsMode="Keep">
+                          <ui:FilterDataTable.Filters>
+                            <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                              <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+                                <ui:FilterOperationArgument.Column>
+                                  <InArgument x:TypeArguments="x:String">["Company"]</InArgument>
+                                </ui:FilterOperationArgument.Column>
+                                <ui:FilterOperationArgument.Operand>
+                                  <InArgument x:TypeArguments="x:String">[IO_dictData("7 Name").Trim]</InArgument>
+                                </ui:FilterOperationArgument.Operand>
+                              </ui:FilterOperationArgument>
+                              <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+                                <ui:FilterOperationArgument.Column>
+                                  <InArgument x:TypeArguments="x:String">["Address"]</InArgument>
+                                </ui:FilterOperationArgument.Column>
+                                <ui:FilterOperationArgument.Operand>
+                                  <InArgument x:TypeArguments="x:String">[IO_previousMatchedAddress]</InArgument>
+                                </ui:FilterOperationArgument.Operand>
+                              </ui:FilterOperationArgument>
+                            </scg:List>
+                          </ui:FilterDataTable.Filters>
+                          <ui:FilterDataTable.SelectColumns>
+                            <scg:List x:TypeArguments="InArgument" Capacity="4">
+                              <x:Null />
+                            </scg:List>
+                          </ui:FilterDataTable.SelectColumns>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                        </ui:FilterDataTable>
+                      </If.Then>
+                      <If.Else>
+                        <Sequence DisplayName="Request user input" sap:VirtualizedContainerService.HintSize="526,1136" sap2010:WorkflowViewState.IdRef="Sequence_64">
+                          <Sequence.Variables>
+                            <Variable x:TypeArguments="scg:List(x:String)" Name="listStrMatches" />
+                            <Variable x:TypeArguments="x:String" Name="strSelectedOption" />
+                          </Sequence.Variables>
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign DisplayName="Init list" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_39">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="scg:List(x:String)">[listStrMatches]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="scg:List(x:String)">[new List(of string)]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[dtaOCRF]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+                            <ui:ForEachRow.Body>
+                              <ActivityAction x:TypeArguments="sd:DataRow">
+                                <ActivityAction.Argument>
+                                  <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
+                                </ActivityAction.Argument>
+                                <AddToCollection x:TypeArguments="x:String" Collection="[listStrMatches]" DisplayName="Add Address and Code" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_182" Item="[string.join(&quot;;&quot;, {row.Item(&quot;Address&quot;), row.Item(&quot;Activity R Code&quot;)})]" />
+                              </ActivityAction>
+                            </ui:ForEachRow.Body>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:ForEachRow>
+                          <AddToCollection x:TypeArguments="x:String" Collection="[listStrMatches]" DisplayName="Add None of the above" sap:VirtualizedContainerService.HintSize="484,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_183" Item="None of the above" />
+                          <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke OCRF User PopUp" sap:VirtualizedContainerService.HintSize="484,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" UnSafe="False" WorkflowFileName="Sub Flows\OCRF User Pop Up.xaml">
+                            <ui:InvokeWorkflowFile.Arguments>
+                              <InArgument x:TypeArguments="scg:List(x:String)" x:Key="IN_listOptions">[listStrMatches]</InArgument>
+                              <OutArgument x:TypeArguments="x:String" x:Key="OUT_strSelectedOption">[strSelectedOption]</OutArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="IN_strCompanyName">[IO_dictData("7 Name")]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="IN_strCompanyAddress">[IO_dictData("7 Address")]</InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="IN_strCompanyRCode">[IO_dictData("8 R-code.D-code (4)")]</InArgument>
+                            </ui:InvokeWorkflowFile.Arguments>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:InvokeWorkflowFile>
+                          <If Condition="[strSelectedOption = &quot;None of the above&quot;]" DisplayName="If none of the above" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_15">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                            <If.Then>
+                              <Throw DisplayName="Throw index out of range" Exception="[new system.IndexOutOfRangeException(&quot;No matches found&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_8" />
+                            </If.Then>
+                          </If>
+                          <ui:FilterDataTable DataTable="[dtaOCRF]" DisplayName="Filter Data Table - for consignee name" FilterRowsMode="Keep" sap:VirtualizedContainerService.HintSize="484,59" sap2010:WorkflowViewState.IdRef="FilterDataTable_4" OutputDataTable="[dtaOCRF]" SelectColumnsMode="Keep">
+                            <ui:FilterDataTable.Filters>
+                              <scg:List x:TypeArguments="ui:FilterOperationArgument" Capacity="4">
+                                <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+                                  <ui:FilterOperationArgument.Column>
+                                    <InArgument x:TypeArguments="x:String">["Company"]</InArgument>
+                                  </ui:FilterOperationArgument.Column>
+                                  <ui:FilterOperationArgument.Operand>
+                                    <InArgument x:TypeArguments="x:String">[IO_dictData("7 Name").Trim]</InArgument>
+                                  </ui:FilterOperationArgument.Operand>
+                                </ui:FilterOperationArgument>
+                                <ui:FilterOperationArgument BooleanOperator="And" Operator="EQ">
+                                  <ui:FilterOperationArgument.Column>
+                                    <InArgument x:TypeArguments="x:String">["Address"]</InArgument>
+                                  </ui:FilterOperationArgument.Column>
+                                  <ui:FilterOperationArgument.Operand>
+                                    <InArgument x:TypeArguments="x:String">[strSelectedOption.Split({";"}, nothing)(0)]</InArgument>
+                                  </ui:FilterOperationArgument.Operand>
+                                </ui:FilterOperationArgument>
+                              </scg:List>
+                            </ui:FilterDataTable.Filters>
+                            <ui:FilterDataTable.SelectColumns>
+                              <scg:List x:TypeArguments="InArgument" Capacity="4">
+                                <x:Null />
+                              </scg:List>
+                            </ui:FilterDataTable.SelectColumns>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:FilterDataTable>
+                          <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_40">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[IO_AddressCheck]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[IO_dictData("7 Address")]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_41">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[IO_previousMatchedAddress]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[strSelectedOption.Split({";"}, nothing)(0)]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </If.Else>
+                    </If>
                   </Switch.Default>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -381,7 +442,7 @@
                   <Throw x:Key="0" DisplayName="Throw index out of range" Exception="[new system.IndexOutOfRangeException(&quot;No matches found&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_6" />
                   <x:Null x:Key="1" />
                 </Switch>
-                <Sequence DisplayName="Store as match" sap:VirtualizedContainerService.HintSize="497,252" sap2010:WorkflowViewState.IdRef="Sequence_54">
+                <Sequence DisplayName="Store as match" sap:VirtualizedContainerService.HintSize="943,252" sap2010:WorkflowViewState.IdRef="Sequence_54">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -408,7 +469,7 @@
               </Sequence>
             </TryCatch.Try>
             <TryCatch.Catches>
-              <Catch x:TypeArguments="s:IndexOutOfRangeException" sap:VirtualizedContainerService.HintSize="543,21" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+              <Catch x:TypeArguments="s:IndexOutOfRangeException" sap:VirtualizedContainerService.HintSize="989,21" sap2010:WorkflowViewState.IdRef="Catch`1_3">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                     <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -434,7 +495,7 @@
         </If.Else>
       </If>
     </Sequence>
-    <ui:ForEach x:TypeArguments="scg:KeyValuePair(x:String, x:String)" CurrentIndex="{x:Null}" DisplayName="For Each data item" sap:VirtualizedContainerService.HintSize="764,194" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[IO_dictData]">
+    <ui:ForEach x:TypeArguments="scg:KeyValuePair(x:String, x:String)" CurrentIndex="{x:Null}" DisplayName="For Each data item" sap:VirtualizedContainerService.HintSize="1210,194" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[IO_dictData]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="scg:KeyValuePair(x:String, x:String)">
           <ActivityAction.Argument>
@@ -456,7 +517,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEach>
-    <If Condition="[IN_dictConfig(&quot;Breakpoint 1&quot;)]" DisplayName="If pause point 1" sap:VirtualizedContainerService.HintSize="764,235" sap2010:WorkflowViewState.IdRef="If_3">
+    <If Condition="[IN_dictConfig(&quot;Breakpoint 1&quot;)]" DisplayName="If pause point 1" sap:VirtualizedContainerService.HintSize="1210,235" sap2010:WorkflowViewState.IdRef="If_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -476,7 +537,7 @@
         </ui:InvokeWorkflowFile>
       </If.Then>
     </If>
-    <Sequence DisplayName="Private: Open workbook" sap:VirtualizedContainerService.HintSize="764,7701" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Private: Open workbook" sap:VirtualizedContainerService.HintSize="1210,7701" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <Sequence.Variables>
         <Variable x:TypeArguments="ss:SecureString" Name="secProcessLogPassword" />
         <Variable x:TypeArguments="x:String" Name="strProcessLogPassword" />

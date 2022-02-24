@@ -9,7 +9,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>2754,1191</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>997,1189</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>OCRF_User_Pop_Up_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="42">
@@ -85,21 +85,11 @@
         </ActivityAction>
       </ufa:FormActivity.DelayBody>
       <ufa:FormActivity.FormFieldsCollection>
-        <InArgument x:TypeArguments="scg:List(x:String)" x:Key="radio_dropdown">
-          <mva:VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="IN_listOptions" />
-        </InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="radio">
-          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="OUT_strSelectedOption" />
-        </OutArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="companyName">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_strCompanyName" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="companyAddress">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_strCompanyAddress" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="rcode">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="IN_strCompanyRCode" />
-        </InArgument>
+        <InArgument x:TypeArguments="scg:List(x:String)" x:Key="radio_dropdown">[IN_listOptions]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="radio">[OUT_strSelectedOption]</OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="companyName">[IN_strCompanyName]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="companyAddress">[IN_strCompanyAddress]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="rcode">[IN_strCompanyRCode]</InArgument>
       </ufa:FormActivity.FormFieldsCollection>
     </ufa:FormActivity>
     <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="521,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[OUT_strSelectedOption]" />
