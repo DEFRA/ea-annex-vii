@@ -8,7 +8,7 @@
     <x:Property Name="OUT_dictData" Type="OutArgument(scg:Dictionary(x:String, scg:Dictionary(x:String, x:String)))" />
     <x:Property Name="IN_dictConfig" Type="InArgument(scg:Dictionary(x:String, ui:GenericValue))" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>2459,14933</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1108,15181</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="52">
@@ -83,7 +83,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Get mail and read attachment data" sap:VirtualizedContainerService.HintSize="1118,14868" sap2010:WorkflowViewState.IdRef="Sequence_7">
+  <Sequence DisplayName="Get mail and read attachment data" sap:VirtualizedContainerService.HintSize="1118,15116" sap2010:WorkflowViewState.IdRef="Sequence_7">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strPDFText" />
       <Variable x:TypeArguments="x:Boolean" Name="booKeyExists" />
@@ -291,13 +291,13 @@
         </sap:WorkflowViewStateService.ViewState>
       </ui:ForEach>
     </Sequence>
-    <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="[intCurrentPage]" DisplayName="For Each File" sap:VirtualizedContainerService.HintSize="1076,12952" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[new DirectoryInfo(IN_strAttachmentFolder).GetFiles().OrderBy(function(fi) fi.CreationTime)]">
+    <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="[intCurrentPage]" DisplayName="For Each File" sap:VirtualizedContainerService.HintSize="1076,13200" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[new DirectoryInfo(IN_strAttachmentFolder).GetFiles().OrderBy(function(fi) fi.CreationTime)]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="si:FileInfo">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="si:FileInfo" Name="file" />
           </ActivityAction.Argument>
-          <TryCatch DisplayName="Try Extract Data" sap:VirtualizedContainerService.HintSize="1040,12818" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+          <TryCatch DisplayName="Try Extract Data" sap:VirtualizedContainerService.HintSize="1040,13066" sap2010:WorkflowViewState.IdRef="TryCatch_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -305,7 +305,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <TryCatch.Try>
-              <Sequence DisplayName="Extract data" sap:VirtualizedContainerService.HintSize="1002,12525" sap2010:WorkflowViewState.IdRef="Sequence_27">
+              <Sequence DisplayName="Extract data" sap:VirtualizedContainerService.HintSize="1002,12773" sap2010:WorkflowViewState.IdRef="Sequence_27">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))" Name="dicResults" />
                   <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="ienEleDescendants" />
@@ -1337,63 +1337,73 @@
                     <InArgument x:TypeArguments="x:String">[Convert.ToDateTime(OUT_mailCurrentEmail.Headers("Date")).ToString("dd.MM.yyyy")]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <Sequence DisplayName="Regex body info" sap:VirtualizedContainerService.HintSize="960,572" sap2010:WorkflowViewState.IdRef="Sequence_49">
+                <Sequence DisplayName="Regex body info" sap:VirtualizedContainerService.HintSize="960,820" sap2010:WorkflowViewState.IdRef="Sequence_49">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <Assign DisplayName="Load Date" sap:VirtualizedContainerService.HintSize="262,64" sap2010:WorkflowViewState.IdRef="Assign_159">
+                  <Assign DisplayName="Load Date" sap:VirtualizedContainerService.HintSize="484,64" sap2010:WorkflowViewState.IdRef="Assign_159">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[OUT_dictData("Page " &amp; intCurrentPage + 1)("Load Date")]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
                       <InArgument x:TypeArguments="x:String" xml:space="preserve">[Regex.Match(OUT_mailCurrentEmail.Body, _
-"(?&lt;=Annex VII REF Number: " &amp; OUT_dictData("Page " &amp; intCurrentPage + 1)("Ref Number") &amp; ")(?'anchor'.*?)(?&lt;=Load Date:)(?'match'.*?)(?=Load Time)", _
+"(?&lt;=Annex VII REF Number: " &amp; OUT_dictData("Page " &amp; intCurrentPage + 1)("Ref Number") &amp; "\b)(?'anchor'.*?)(?&lt;=Load Date:)(?'match'.*?)(?=Load Time)", _
 RegexOptions.Singleline Or RegexOptions.IgnoreCase).Groups("match").Value.Trim]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign DisplayName="Load Time" sap:VirtualizedContainerService.HintSize="262,64" sap2010:WorkflowViewState.IdRef="Assign_160">
+                  <Assign DisplayName="Load Time" sap:VirtualizedContainerService.HintSize="484,64" sap2010:WorkflowViewState.IdRef="Assign_160">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[OUT_dictData("Page " &amp; intCurrentPage + 1)("Load Time")]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
                       <InArgument x:TypeArguments="x:String" xml:space="preserve">[Regex.Match(OUT_mailCurrentEmail.Body, _
-"(?&lt;=Annex VII REF Number: " &amp; OUT_dictData("Page " &amp; intCurrentPage + 1)("Ref Number") &amp; ")(?'anchor'.*?)(?&lt;=Load Time:)(?'match'.*?)(?=Booking)" _
+"(?&lt;=Annex VII REF Number: " &amp; OUT_dictData("Page " &amp; intCurrentPage + 1)("Ref Number") &amp; "\b)(?'anchor'.*?)(?&lt;=Load Time:)(?'match'.*?)(?=Booking)" _
 , RegexOptions.Singleline Or RegexOptions.IgnoreCase).Groups("match").Value.Trim]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign DisplayName="Booking REF" sap:VirtualizedContainerService.HintSize="262,64" sap2010:WorkflowViewState.IdRef="Assign_161">
+                  <Assign DisplayName="Booking REF" sap:VirtualizedContainerService.HintSize="484,64" sap2010:WorkflowViewState.IdRef="Assign_161">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[OUT_dictData("Page " &amp; intCurrentPage + 1)("Booking REF Number")]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
                       <InArgument x:TypeArguments="x:String" xml:space="preserve">[Regex.Match(OUT_mailCurrentEmail.Body, _
-"(?&lt;=Annex VII REF Number: " &amp; OUT_dictData("Page " &amp; intCurrentPage + 1)("Ref Number") &amp; ")(?'anchor'.*?)(?&lt;=Booking REF Number::)(?'match'.*?)(?=Intend To)", _
+"(?&lt;=Annex VII REF Number: " &amp; OUT_dictData("Page " &amp; intCurrentPage + 1)("Ref Number") &amp; "\b)(?'anchor'.*?)(?&lt;=Booking REF Number::)(?'match'.*?)(?=Intend To)", _
 RegexOptions.Singleline Or RegexOptions.IgnoreCase).Groups("match").Value.Trim]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign DisplayName="Store PERN" sap:VirtualizedContainerService.HintSize="262,64" sap2010:WorkflowViewState.IdRef="Assign_162">
+                  <Assign DisplayName="Store PERN" sap:VirtualizedContainerService.HintSize="484,64" sap2010:WorkflowViewState.IdRef="Assign_162">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[OUT_dictData("Page " &amp; intCurrentPage + 1)("9 Intended PERN claim percentage")]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
                       <InArgument x:TypeArguments="x:String" xml:space="preserve">[Regex.Match(OUT_mailCurrentEmail.Body, _
-"(?&lt;=Annex VII REF Number: " &amp; OUT_dictData("Page " &amp; intCurrentPage + 1)("Ref Number") &amp; ")(?'anchor'.*?)(?&lt;=Intended PERN Claim Percentage:)(?'match'.*?)(?=\n)", _
+"(?&lt;=Annex VII REF Number: " &amp; OUT_dictData("Page " &amp; intCurrentPage + 1)("Ref Number") &amp; "\b)(?'anchor'.*?)(?&lt;=Intended PERN Claim Percentage:)(?'match'.*?)(?=\n)", _
 RegexOptions.Singleline Or RegexOptions.IgnoreCase).Groups("match").Value.Trim]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Assign DisplayName="Pern intention" sap:VirtualizedContainerService.HintSize="262,64" sap2010:WorkflowViewState.IdRef="Assign_163">
+                  <Assign DisplayName="Pern intention" sap:VirtualizedContainerService.HintSize="484,64" sap2010:WorkflowViewState.IdRef="Assign_163">
                     <Assign.To>
                       <OutArgument x:TypeArguments="x:String">[OUT_dictData("Page " &amp; intCurrentPage + 1)("Intend To Claim PERN")]</OutArgument>
                     </Assign.To>
                     <Assign.Value>
                       <InArgument x:TypeArguments="x:String" xml:space="preserve">[Regex.Match(OUT_mailCurrentEmail.Body, _
-"(?&lt;=Annex VII REF Number: " &amp; OUT_dictData("Page " &amp; intCurrentPage + 1)("Ref Number") &amp; ")(?'anchor'.*?)(?&lt;=Intend To Claim PERN:)(?'match'.*?)(?=Intended)", _
+"(?&lt;=Annex VII REF Number: " &amp; OUT_dictData("Page " &amp; intCurrentPage + 1)("Ref Number") &amp; "\b)(?'anchor'.*?)(?&lt;=Intend To Claim PERN:)(?'match'.*?)(?=Intended)", _
 RegexOptions.Singleline Or RegexOptions.IgnoreCase).Groups("match").Value.Trim]</InArgument>
                     </Assign.Value>
                   </Assign>
+                  <If Condition="[OUT_dictData(&quot;Page &quot; &amp; intCurrentPage + 1)(&quot;Intend To Claim PERN&quot;).Trim = &quot;&quot;]" DisplayName="If PERN is blank" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_30">
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <If.Then>
+                      <Throw DisplayName="Throw Data Exception" Exception="[new InvalidDataException(&quot;Email body is not formatted correctly, unable to establish intent to claim PERN.&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_8" />
+                    </If.Then>
+                  </If>
                 </Sequence>
                 <If Condition="[OUT_dictData(&quot;Page &quot; &amp; intCurrentPage + 1)(&quot;1 Name&quot;).Trim = &quot;&quot;]" DisplayName="If Not a valid annex" sap:VirtualizedContainerService.HintSize="960,286" sap2010:WorkflowViewState.IdRef="If_21">
                   <sap:WorkflowViewStateService.ViewState>
