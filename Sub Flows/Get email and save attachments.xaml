@@ -8,7 +8,7 @@
     <x:Property Name="OUT_dictData" Type="OutArgument(scg:Dictionary(x:String, scg:Dictionary(x:String, x:String)))" />
     <x:Property Name="IN_dictConfig" Type="InArgument(scg:Dictionary(x:String, ui:GenericValue))" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1108,15181</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1108,15187</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="52">
@@ -83,7 +83,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Get mail and read attachment data" sap:VirtualizedContainerService.HintSize="1118,15116" sap2010:WorkflowViewState.IdRef="Sequence_7">
+  <Sequence DisplayName="Get mail and read attachment data" sap:VirtualizedContainerService.HintSize="1118,15122" sap2010:WorkflowViewState.IdRef="Sequence_7">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strPDFText" />
       <Variable x:TypeArguments="x:Boolean" Name="booKeyExists" />
@@ -106,7 +106,7 @@
         <InArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:String))">[new Dictionary(of string, Dictionary(of string, string))]</InArgument>
       </Assign.Value>
     </Assign>
-    <Sequence DisplayName="Get mail and Save Attachments" sap:VirtualizedContainerService.HintSize="1076,940" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence DisplayName="Get mail and Save Attachments" sap:VirtualizedContainerService.HintSize="1076,946" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <Sequence.Variables>
         <Variable x:TypeArguments="scg:ICollection(x:String)" Name="listAttachments" />
         <Variable x:TypeArguments="x:String" Name="strAttName" />
@@ -167,21 +167,45 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:SaveMailAttachments>
-      <If Condition="[OUT_mailCurrentEmail.Headers(&quot;Date&quot;) is Nothing]" DisplayName="If blank date" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_28">
+      <If Condition="[OUT_mailCurrentEmail.Headers(&quot;Date&quot;) is Nothing]" DisplayName="If blank date" sap:VirtualizedContainerService.HintSize="484,214" sap2010:WorkflowViewState.IdRef="If_28">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsPinned">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <If.Then>
-          <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_167">
-            <Assign.To>
-              <OutArgument x:TypeArguments="x:String">[OUT_mailCurrentEmail.Headers("Date")]</OutArgument>
-            </Assign.To>
-            <Assign.Value>
-              <InArgument x:TypeArguments="x:String">[Now.tostring("yyyy/MM/dd")]</InArgument>
-            </Assign.Value>
-          </Assign>
+          <Sequence DisplayName="Date not found" sap:VirtualizedContainerService.HintSize="478,338" sap2010:WorkflowViewState.IdRef="Sequence_55">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,184" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+              <ui:CommentOut.Body>
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_54">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_167">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:String">[OUT_mailCurrentEmail.Headers("Date")]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:String">[Now.tostring("yyyy/MM/dd")]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </ui:CommentOut.Body>
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+            </ui:CommentOut>
+            <Throw DisplayName="Throw invalid mail headers" Exception="[new InvalidDataException(&quot;Invalid mail headers, could not get sent date.&quot;)]" sap:VirtualizedContainerService.HintSize="436,22" sap2010:WorkflowViewState.IdRef="Throw_9" />
+          </Sequence>
         </If.Then>
       </If>
     </Sequence>
