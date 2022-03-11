@@ -8,7 +8,7 @@
     <x:Property Name="OUT_dictData" Type="OutArgument(scg:Dictionary(x:String, scg:Dictionary(x:String, x:String)))" />
     <x:Property Name="IN_dictConfig" Type="InArgument(scg:Dictionary(x:String, ui:GenericValue))" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1108,15187</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1108,15043</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="52">
@@ -83,7 +83,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Get mail and read attachment data" sap:VirtualizedContainerService.HintSize="1118,15122" sap2010:WorkflowViewState.IdRef="Sequence_7">
+  <Sequence DisplayName="Get mail and read attachment data" sap:VirtualizedContainerService.HintSize="1118,14978" sap2010:WorkflowViewState.IdRef="Sequence_7">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strPDFText" />
       <Variable x:TypeArguments="x:Boolean" Name="booKeyExists" />
@@ -106,7 +106,7 @@
         <InArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:String))">[new Dictionary(of string, Dictionary(of string, string))]</InArgument>
       </Assign.Value>
     </Assign>
-    <Sequence DisplayName="Get mail and Save Attachments" sap:VirtualizedContainerService.HintSize="1076,946" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence DisplayName="Get mail and Save Attachments" sap:VirtualizedContainerService.HintSize="1076,784" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <Sequence.Variables>
         <Variable x:TypeArguments="scg:ICollection(x:String)" Name="listAttachments" />
         <Variable x:TypeArguments="x:String" Name="strAttName" />
@@ -121,7 +121,7 @@
           <x:Boolean x:Key="IsPinned">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:GetOutlookMailMessages FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" Account="[IN_strEmailAccount]" sap2010:Annotation.AnnotationText="From inbox" DisplayName="Retry Point: Get Mail " Filter="@SQL=urn:schemas:httpmail:hasattachment=true" GetAttachements="False" sap:VirtualizedContainerService.HintSize="484,53" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_4" MailFolder="[IN_strInboxFolder]" MarkAsRead="False" Messages="[listMessage]" OnlyUnreadMessages="False" OrderByDate="OldestFirst" Top="100">
+      <ui:GetOutlookMailMessages FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" Account="[IN_strEmailAccount]" sap2010:Annotation.AnnotationText="From inbox" DisplayName="Retry Point: Get Mail " Filter="@SQL=urn:schemas:httpmail:hasattachment=true" GetAttachements="False" sap:VirtualizedContainerService.HintSize="334,53" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_4" MailFolder="[IN_strInboxFolder]" MarkAsRead="False" Messages="[listMessage]" OnlyUnreadMessages="False" OrderByDate="OldestFirst" Top="100">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -129,7 +129,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:GetOutlookMailMessages>
-      <Assign DisplayName="Order by date received" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign DisplayName="Order by date received" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
         <Assign.To>
           <OutArgument x:TypeArguments="scg:List(snm:MailMessage)">[listMessage]</OutArgument>
         </Assign.To>
@@ -137,14 +137,14 @@
           <InArgument x:TypeArguments="scg:List(snm:MailMessage)">[listMessage.OrderBy(function(m) m.Headers("DateReceived")).ToList]</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:MoveOutlookMessage Account="[IN_strEmailAccount]" DisplayName="Move Last Outlook Mail Message" sap:VirtualizedContainerService.HintSize="484,87" sap2010:WorkflowViewState.IdRef="MoveOutlookMessage_4" MailFolder="[IN_strInProgressFolder]" MailMessage="[listMessage.Last]">
+      <ui:MoveOutlookMessage Account="[IN_strEmailAccount]" DisplayName="Move Last Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="MoveOutlookMessage_4" MailFolder="[IN_strInProgressFolder]" MailMessage="[listMessage.Last]">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsPinned">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:MoveOutlookMessage>
-      <ui:GetOutlookMailMessages Filter="{x:Null}" FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" Account="[IN_strEmailAccount]" sap2010:Annotation.AnnotationText="From in progress" DisplayName="Retry Point: Get Mail" GetAttachements="False" sap:VirtualizedContainerService.HintSize="484,53" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_5" MailFolder="[IN_strInProgressFolder]" MarkAsRead="False" Messages="[listMessage]" OnlyUnreadMessages="False" OrderByDate="NewestFirst" Top="1">
+      <ui:GetOutlookMailMessages Filter="{x:Null}" FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" Account="[IN_strEmailAccount]" sap2010:Annotation.AnnotationText="From in progress" DisplayName="Retry Point: Get Mail" GetAttachements="False" sap:VirtualizedContainerService.HintSize="334,53" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_5" MailFolder="[IN_strInProgressFolder]" MarkAsRead="False" Messages="[listMessage]" OnlyUnreadMessages="False" OrderByDate="NewestFirst" Top="1">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -152,7 +152,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:GetOutlookMailMessages>
-      <Assign DisplayName="Store current mail" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign DisplayName="Store current mail" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
         <Assign.To>
           <OutArgument x:TypeArguments="snm:MailMessage">[OUT_mailCurrentEmail]</OutArgument>
         </Assign.To>
@@ -160,32 +160,35 @@
           <InArgument x:TypeArguments="snm:MailMessage">[listMessage.Last]</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:SaveMailAttachments Attachments="{x:Null}" DisplayName="Save Attachments" Filter=".*\.pdf" FolderPath="[IN_strAttachmentFolder]" sap:VirtualizedContainerService.HintSize="484,87" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_5" Message="[OUT_mailCurrentEmail]" OverwriteExisting="False">
+      <ui:SaveMailAttachments Attachments="{x:Null}" DisplayName="Save Attachments" Filter=".*\.pdf" FolderPath="[IN_strAttachmentFolder]" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_5" Message="[OUT_mailCurrentEmail]" OverwriteExisting="False">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsPinned">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:SaveMailAttachments>
-      <If Condition="[OUT_mailCurrentEmail.Headers(&quot;Date&quot;) is Nothing]" DisplayName="If blank date" sap:VirtualizedContainerService.HintSize="484,214" sap2010:WorkflowViewState.IdRef="If_28">
+      <If Condition="[OUT_mailCurrentEmail.Headers(&quot;Date&quot;) is Nothing]" DisplayName="If blank date" sap:VirtualizedContainerService.HintSize="334,52" sap2010:WorkflowViewState.IdRef="If_28">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsPinned">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
         <If.Then>
-          <Sequence DisplayName="Date not found" sap:VirtualizedContainerService.HintSize="478,338" sap2010:WorkflowViewState.IdRef="Sequence_55">
+          <Sequence DisplayName="Date not found" sap:VirtualizedContainerService.HintSize="478,424" sap2010:WorkflowViewState.IdRef="Sequence_55">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsPinned">True</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
-            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,184" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,270" sap2010:WorkflowViewState.IdRef="CommentOut_1">
               <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_54">
+                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_54">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_167">
@@ -209,7 +212,7 @@
         </If.Then>
       </If>
     </Sequence>
-    <Sequence sap2010:Annotation.AnnotationText="some clients will email in multiple annex forms in a single pdf&#xA;test data provided showed it may be multiple files with multiple annex forms&#xA;This code will look at each file&#xA;do nothing if there is only 1 page&#xA;split and delete parent if more than 2 pages" DisplayName="Split multi PDF file" sap:VirtualizedContainerService.HintSize="1076,704" sap2010:WorkflowViewState.IdRef="Sequence_53">
+    <Sequence sap2010:Annotation.AnnotationText="some clients will email in multiple annex forms in a single pdf&#xA;test data provided showed it may be multiple files with multiple annex forms&#xA;This code will look at each file&#xA;do nothing if there is only 1 page&#xA;split and delete parent if more than 2 pages" DisplayName="Split multi PDF file" sap:VirtualizedContainerService.HintSize="1076,713" sap2010:WorkflowViewState.IdRef="Sequence_53">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -217,13 +220,13 @@
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="[intCurrentPage]" DisplayName="For Each File" sap:VirtualizedContainerService.HintSize="575,525" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[new DirectoryInfo(IN_strAttachmentFolder).GetFiles().OrderBy(function(fi) fi.CreationTime)]">
+      <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="[intCurrentPage]" DisplayName="For Each File" sap:VirtualizedContainerService.HintSize="575,529" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[new DirectoryInfo(IN_strAttachmentFolder).GetFiles().OrderBy(function(fi) fi.CreationTime)]">
         <ui:ForEach.Body>
           <ActivityAction x:TypeArguments="si:FileInfo">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="si:FileInfo" Name="file" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Split File" sap:VirtualizedContainerService.HintSize="539,391" sap2010:WorkflowViewState.IdRef="Sequence_52">
+            <Sequence DisplayName="Split File" sap:VirtualizedContainerService.HintSize="539,394" sap2010:WorkflowViewState.IdRef="Sequence_52">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:Int32" Name="intPageCount" />
                 <Variable x:TypeArguments="x:Int32" Name="intLoop" />
@@ -241,7 +244,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </upap:GetPDFPageCount>
-              <Switch x:TypeArguments="x:Boolean" DisplayName="Switch multi page" Expression="[intPageCount &gt; 1]" sap:VirtualizedContainerService.HintSize="497,138" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+              <Switch x:TypeArguments="x:Boolean" DisplayName="Switch multi page" Expression="[intPageCount &gt; 1]" sap:VirtualizedContainerService.HintSize="497,141" sap2010:WorkflowViewState.IdRef="Switch`1_1">
                 <Switch.Default>
                   <ui:Continue sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Continue_1" />
                 </Switch.Default>
@@ -266,7 +269,7 @@
                       <InArgument x:TypeArguments="x:Int32">0</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <ui:InterruptibleWhile DisplayName="While - page cycle " sap:VirtualizedContainerService.HintSize="412,448" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
+                  <ui:InterruptibleWhile DisplayName="While - page cycle " sap:VirtualizedContainerService.HintSize="412,484" sap2010:WorkflowViewState.IdRef="InterruptibleWhile_1">
                     <ui:InterruptibleWhile.Body>
                       <Sequence DisplayName="find and extract page" sap:VirtualizedContainerService.HintSize="376,279" sap2010:WorkflowViewState.IdRef="Sequence_50">
                         <sap:WorkflowViewStateService.ViewState>
@@ -315,13 +318,13 @@
         </sap:WorkflowViewStateService.ViewState>
       </ui:ForEach>
     </Sequence>
-    <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="[intCurrentPage]" DisplayName="For Each File" sap:VirtualizedContainerService.HintSize="1076,13200" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[new DirectoryInfo(IN_strAttachmentFolder).GetFiles().OrderBy(function(fi) fi.CreationTime)]">
+    <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="[intCurrentPage]" DisplayName="For Each File" sap:VirtualizedContainerService.HintSize="1076,13209" sap2010:WorkflowViewState.IdRef="ForEach`1_6" Values="[new DirectoryInfo(IN_strAttachmentFolder).GetFiles().OrderBy(function(fi) fi.CreationTime)]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="si:FileInfo">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="si:FileInfo" Name="file" />
           </ActivityAction.Argument>
-          <TryCatch DisplayName="Try Extract Data" sap:VirtualizedContainerService.HintSize="1040,13066" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+          <TryCatch DisplayName="Try Extract Data" sap:VirtualizedContainerService.HintSize="1040,13074" sap2010:WorkflowViewState.IdRef="TryCatch_1">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -329,7 +332,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <TryCatch.Try>
-              <Sequence DisplayName="Extract data" sap:VirtualizedContainerService.HintSize="1002,12773" sap2010:WorkflowViewState.IdRef="Sequence_27">
+              <Sequence DisplayName="Extract data" sap:VirtualizedContainerService.HintSize="1002,12777" sap2010:WorkflowViewState.IdRef="Sequence_27">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))" Name="dicResults" />
                   <Variable x:TypeArguments="scg:IEnumerable(ui:UiElement)" Name="ienEleDescendants" />
@@ -373,17 +376,17 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                 </ui:GetFullText>
-                <If Condition="[strFullText.ToUpper.Contains(&quot;INFORMATION ACCOMPANYING SHIPMENTS OF WASTE&quot;) = False]" DisplayName="If pdf is not an annex vii form" sap:VirtualizedContainerService.HintSize="960,208" sap2010:WorkflowViewState.IdRef="If_29">
+                <If Condition="[Regex.Replace(strFullText.ToUpper, &quot;\s|\\r|\\n&quot;,&quot;&quot;).Contains(&quot;INFORMATIONACCOMPANYINGSHIPMENTSOFWASTE&quot;)]" DisplayName="If pdf is an annex vii form" sap:VirtualizedContainerService.HintSize="960,210" sap2010:WorkflowViewState.IdRef="If_29">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsPinned">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <If.Then>
+                  <If.Else>
                     <Throw DisplayName="Throw checkpoint error" Exception="[new CheckpointException(&quot;Not a valid annex vii&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_7" />
-                  </If.Then>
+                  </If.Else>
                 </If>
-                <Sequence DisplayName="Regex for values" sap:VirtualizedContainerService.HintSize="960,10463" sap2010:WorkflowViewState.IdRef="Sequence_30">
+                <Sequence DisplayName="Regex for values" sap:VirtualizedContainerService.HintSize="960,10465" sap2010:WorkflowViewState.IdRef="Sequence_30">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="x:String" Name="strBoxText" />
                   </Sequence.Variables>
@@ -409,7 +412,7 @@
                       <InArgument x:TypeArguments="x:String">[Regex.Match(strFullText, "(?&lt;=Ref:).*?(?=1\.)", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value.Trim]</InArgument>
                     </Assign.Value>
                   </Assign>
-                  <Sequence DisplayName="Box 1" sap:VirtualizedContainerService.HintSize="918,900" sap2010:WorkflowViewState.IdRef="Sequence_29">
+                  <Sequence DisplayName="Box 1" sap:VirtualizedContainerService.HintSize="918,902" sap2010:WorkflowViewState.IdRef="Sequence_29">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -432,7 +435,7 @@
                         <InArgument x:TypeArguments="x:String">[Regex.Match(strBoxText, "(?&lt;=Name:).*?(?=Address:)", RegexOptions.Singleline or RegexOptions.IgnoreCase).Value.Trim]</InArgument>
                       </Assign.Value>
                     </Assign>
-                    <If Condition="[OUT_dictData(&quot;Page &quot; &amp; intCurrentPage + 1)(&quot;1 Name&quot;).Trim = &quot;&quot;]" DisplayName="If Name is blank" sap:VirtualizedContainerService.HintSize="484,208" sap2010:WorkflowViewState.IdRef="If_22">
+                    <If Condition="[OUT_dictData(&quot;Page &quot; &amp; intCurrentPage + 1)(&quot;1 Name&quot;).Trim = &quot;&quot;]" DisplayName="If Name is blank" sap:VirtualizedContainerService.HintSize="484,210" sap2010:WorkflowViewState.IdRef="If_22">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsPinned">True</x:Boolean>
@@ -1552,7 +1555,7 @@ RegexOptions.Singleline Or RegexOptions.IgnoreCase).Groups("match").Value.Trim]<
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="ui:CheckpointException" Name="exception" />
                   </ActivityAction.Argument>
-                  <ui:CloseApplication DisplayName="Close Application 'Adobe'" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="CloseApplication_4">
+                  <ui:CloseApplication DisplayName="Close Application 'Adobe'" sap:VirtualizedContainerService.HintSize="334,106" sap2010:WorkflowViewState.IdRef="CloseApplication_4">
                     <ui:CloseApplication.Target>
                       <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f53839b8-3483-4c73-97e6-afce6d97622b" InformativeScreenshot="cb6a0f446ff547c41016b17bd004fbbe" Selector="&lt;wnd app='acrord*.exe' cls='AcrobatSDIWindow' /&gt;">
                         <ui:Target.TimeoutMS>
@@ -1563,6 +1566,11 @@ RegexOptions.Singleline Or RegexOptions.IgnoreCase).Groups("match").Value.Trim]<
                         </ui:Target.WaitForReady>
                       </ui:Target>
                     </ui:CloseApplication.Target>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
                   </ui:CloseApplication>
                 </ActivityAction>
               </Catch>
