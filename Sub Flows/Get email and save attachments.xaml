@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="get_mail_and_Save_Attachments" this:get_mail_and_Save_Attachments.IN_strAttachmentFolder="C:\Users\Jsavory\Documents\GitHub\ea-annex-vii\Documents\Attachments\" this:get_mail_and_Save_Attachments.IN_strInProgressFolder="Inbox\Annex VII\In Progress" this:get_mail_and_Save_Attachments.IN_strInboxFolder="Inbox\Annex VII" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:maes="clr-namespace:Microsoft.Activities.Extensions.Statements;assembly=Microsoft.Activities.Extensions" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:si="clr-namespace:System.IO;assembly=mscorlib" xmlns:sma="clr-namespace:System.Management.Automation;assembly=System.Management.Automation" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:sri="clr-namespace:System.Runtime.InteropServices;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upap="clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="get_mail_and_Save_Attachments" this:get_mail_and_Save_Attachments.IN_strAttachmentFolder="C:\Users\Jsavory\Documents\GitHub\ea-annex-vii\Documents\Attachments\" this:get_mail_and_Save_Attachments.IN_strInProgressFolder="Inbox\Annex VII\In Progress" this:get_mail_and_Save_Attachments.IN_strInboxFolder="Inbox\Annex VII" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:maes="clr-namespace:Microsoft.Activities.Extensions.Statements;assembly=Microsoft.Activities.Extensions" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mewd="clr-namespace:Microsoft.Exchange.WebServices.Data;assembly=Microsoft.Exchange.WebServices" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:si="clr-namespace:System.IO;assembly=mscorlib" xmlns:sma="clr-namespace:System.Management.Automation;assembly=System.Management.Automation" xmlns:sn="clr-namespace:System.Net;assembly=System" xmlns:snm="clr-namespace:System.Net.Mail;assembly=System" xmlns:sri="clr-namespace:System.Runtime.InteropServices;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:upap="clr-namespace:UiPath.PDF.Activities.PDF;assembly=UiPath.PDF.Activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="IN_strEmailAccount" Type="InArgument(x:String)" />
     <x:Property Name="IN_strAttachmentFolder" Type="InArgument(x:String)" />
@@ -7,8 +7,9 @@
     <x:Property Name="OUT_mailCurrentEmail" Type="OutArgument(snm:MailMessage)" />
     <x:Property Name="OUT_dictData" Type="OutArgument(scg:Dictionary(x:String, scg:Dictionary(x:String, x:String)))" />
     <x:Property Name="IN_dictConfig" Type="InArgument(scg:Dictionary(x:String, ui:GenericValue))" />
+    <x:Property Name="IN_credUserCredentials" Type="InArgument(sn:NetworkCredential)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1108,15043</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1108,15098</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="52">
@@ -40,6 +41,8 @@
       <x:String>UiPath.OCR.Contracts</x:String>
       <x:String>System.Collections.ObjectModel</x:String>
       <x:String>System.Management.Automation</x:String>
+      <x:String>System.Net</x:String>
+      <x:String>System.Security</x:String>
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -83,7 +86,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Get mail and read attachment data" sap:VirtualizedContainerService.HintSize="1118,14978" sap2010:WorkflowViewState.IdRef="Sequence_7">
+  <Sequence DisplayName="Get mail and read attachment data" sap:VirtualizedContainerService.HintSize="1118,15033" sap2010:WorkflowViewState.IdRef="Sequence_7">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strPDFText" />
       <Variable x:TypeArguments="x:Boolean" Name="booKeyExists" />
@@ -106,7 +109,7 @@
         <InArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:String))">[new Dictionary(of string, Dictionary(of string, string))]</InArgument>
       </Assign.Value>
     </Assign>
-    <Sequence DisplayName="Get mail and Save Attachments" sap:VirtualizedContainerService.HintSize="1076,784" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence DisplayName="Get mail and Save Attachments" sap:VirtualizedContainerService.HintSize="1076,848" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <Sequence.Variables>
         <Variable x:TypeArguments="scg:ICollection(x:String)" Name="listAttachments" />
         <Variable x:TypeArguments="x:String" Name="strAttName" />
@@ -121,98 +124,62 @@
           <x:Boolean x:Key="IsPinned">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:GetOutlookMailMessages FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" Account="[IN_strEmailAccount]" sap2010:Annotation.AnnotationText="From inbox" DisplayName="Retry Point: Get Mail " Filter="@SQL=urn:schemas:httpmail:hasattachment=true" GetAttachements="False" sap:VirtualizedContainerService.HintSize="334,53" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_4" MailFolder="[IN_strInboxFolder]" MarkAsRead="False" Messages="[listMessage]" OnlyUnreadMessages="False" OrderByDate="OldestFirst" Top="100">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </ui:GetOutlookMailMessages>
-      <Assign DisplayName="Order by date received" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
-        <Assign.To>
-          <OutArgument x:TypeArguments="scg:List(snm:MailMessage)">[listMessage]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="scg:List(snm:MailMessage)">[listMessage.OrderBy(function(m) m.Headers("DateReceived")).ToList]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <ui:MoveOutlookMessage Account="[IN_strEmailAccount]" DisplayName="Move Last Outlook Mail Message" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="MoveOutlookMessage_4" MailFolder="[IN_strInProgressFolder]" MailMessage="[listMessage.Last]">
+      <ui:ExchangeScope ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" ExchangeService="{x:Null}" ExistingExchangeService="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" AuthenticationMode="UserNameAndPassword" DisplayName="Exchange Scope" Domain="DEMETER" ExchangeVersion="Exchange2013_SP1" sap:VirtualizedContainerService.HintSize="434,629" sap2010:WorkflowViewState.IdRef="ExchangeScope_1" SecurePassword="[IN_credUserCredentials.SecurePassword]" Server="https://outlook.office365.com/ews/exchange.asmx" User="[IN_credUserCredentials.UserName]">
+        <ui:ExchangeScope.Body>
+          <ActivityAction x:TypeArguments="mewd:ExchangeService">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="mewd:ExchangeService" Name="ExchangeConnection" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="get and move mail" sap:VirtualizedContainerService.HintSize="376,503" sap2010:WorkflowViewState.IdRef="Sequence_56">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:GetExchangeMailMessages ApplicationId="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" FilterByMessageIds="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" User="{x:Null}" AuthenticationMode="UserNameAndPassword" CustomFolder="[IN_strInboxFolder]" DisplayName="Retry Point: Get Mail" ExchangeVersion="Exchange2013_SP1" FilterExpression="@SQL=urn:schemas:httpmail:hasattachment=true" GetAttachements="True" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="GetExchangeMailMessages_1" IsBodyHtml="False" MailFolder="Calendar" MarkAsRead="False" Messages="[listMessage]" OnlyUnreadMessages="False" OrderByDate="OldestFirst" SharedMailbox="[IN_strEmailAccount]" Top="1" />
+              <Assign DisplayName="Order by date received" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="scg:List(snm:MailMessage)">[listMessage]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="scg:List(snm:MailMessage)">[listMessage.OrderBy(function(m) m.Headers("DateReceived")).ToList]</InArgument>
+                </Assign.Value>
+              </Assign>
+              <ui:MoveMessageToFolder ApplicationId="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" Server="{x:Null}" SharedMailbox="{x:Null}" TimeoutMS="{x:Null}" User="{x:Null}" AuthenticationMode="UserNameAndPassword" DisplayName="Move Exchange Mail Message" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="MoveMessageToFolder_1" MailFolder="[IN_strInProgressFolder]" MailMessage="[listMessage.Last]">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </ui:MoveMessageToFolder>
+              <ui:GetExchangeMailMessages ApplicationId="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" FilterByMessageIds="{x:Null}" FilterExpression="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" User="{x:Null}" AuthenticationMode="UserNameAndPassword" CustomFolder="[IN_strInProgressFolder]" DisplayName="Retry Point: Get Mail" ExchangeVersion="Exchange2013_SP1" GetAttachements="True" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="GetExchangeMailMessages_2" IsBodyHtml="False" MailFolder="Calendar" MarkAsRead="False" Messages="[listMessage]" OnlyUnreadMessages="False" OrderByDate="OldestFirst" SharedMailbox="[IN_strEmailAccount]" Top="1" />
+              <Assign DisplayName="Store current mail" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="snm:MailMessage">[OUT_mailCurrentEmail]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="snm:MailMessage">[listMessage.Last]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
+          </ActivityAction>
+        </ui:ExchangeScope.Body>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsPinned">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-      </ui:MoveOutlookMessage>
-      <ui:GetOutlookMailMessages Filter="{x:Null}" FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" Account="[IN_strEmailAccount]" sap2010:Annotation.AnnotationText="From in progress" DisplayName="Retry Point: Get Mail" GetAttachements="False" sap:VirtualizedContainerService.HintSize="334,53" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_5" MailFolder="[IN_strInProgressFolder]" MarkAsRead="False" Messages="[listMessage]" OnlyUnreadMessages="False" OrderByDate="NewestFirst" Top="1">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-      </ui:GetOutlookMailMessages>
-      <Assign DisplayName="Store current mail" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
-        <Assign.To>
-          <OutArgument x:TypeArguments="snm:MailMessage">[OUT_mailCurrentEmail]</OutArgument>
-        </Assign.To>
-        <Assign.Value>
-          <InArgument x:TypeArguments="snm:MailMessage">[listMessage.Last]</InArgument>
-        </Assign.Value>
-      </Assign>
-      <ui:SaveMailAttachments Attachments="{x:Null}" DisplayName="Save Attachments" Filter=".*\.pdf" FolderPath="[IN_strAttachmentFolder]" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_5" Message="[OUT_mailCurrentEmail]" OverwriteExisting="False">
+      </ui:ExchangeScope>
+      <ui:SaveMailAttachments Attachments="{x:Null}" DisplayName="Save Attachments" Filter=".*\.pdf" FolderPath="[IN_strAttachmentFolder]" sap:VirtualizedContainerService.HintSize="434,87" sap2010:WorkflowViewState.IdRef="SaveMailAttachments_5" Message="[OUT_mailCurrentEmail]" OverwriteExisting="False">
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsPinned">True</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:SaveMailAttachments>
-      <If Condition="[OUT_mailCurrentEmail.Headers(&quot;Date&quot;) is Nothing]" DisplayName="If blank date" sap:VirtualizedContainerService.HintSize="334,52" sap2010:WorkflowViewState.IdRef="If_28">
-        <sap:WorkflowViewStateService.ViewState>
-          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-          </scg:Dictionary>
-        </sap:WorkflowViewStateService.ViewState>
-        <If.Then>
-          <Sequence DisplayName="Date not found" sap:VirtualizedContainerService.HintSize="478,424" sap2010:WorkflowViewState.IdRef="Sequence_55">
-            <sap:WorkflowViewStateService.ViewState>
-              <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                <x:Boolean x:Key="IsPinned">True</x:Boolean>
-              </scg:Dictionary>
-            </sap:WorkflowViewStateService.ViewState>
-            <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="436,270" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-              <ui:CommentOut.Body>
-                <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="304,152" sap2010:WorkflowViewState.IdRef="Sequence_54">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_167">
-                    <Assign.To>
-                      <OutArgument x:TypeArguments="x:String">[OUT_mailCurrentEmail.Headers("Date")]</OutArgument>
-                    </Assign.To>
-                    <Assign.Value>
-                      <InArgument x:TypeArguments="x:String">[Now.tostring("yyyy/MM/dd")]</InArgument>
-                    </Assign.Value>
-                  </Assign>
-                </Sequence>
-              </ui:CommentOut.Body>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsPinned">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-            </ui:CommentOut>
-            <Throw DisplayName="Throw invalid mail headers" Exception="[new InvalidDataException(&quot;Invalid mail headers, could not get sent date.&quot;)]" sap:VirtualizedContainerService.HintSize="436,22" sap2010:WorkflowViewState.IdRef="Throw_9" />
-          </Sequence>
-        </If.Then>
-      </If>
     </Sequence>
-    <Sequence sap2010:Annotation.AnnotationText="some clients will email in multiple annex forms in a single pdf&#xA;test data provided showed it may be multiple files with multiple annex forms&#xA;This code will look at each file&#xA;do nothing if there is only 1 page&#xA;split and delete parent if more than 2 pages" DisplayName="Split multi PDF file" sap:VirtualizedContainerService.HintSize="1076,713" sap2010:WorkflowViewState.IdRef="Sequence_53">
+    <Sequence sap2010:Annotation.AnnotationText="some clients will email in multiple annex forms in a single pdf&#xA;test data provided showed it may be multiple files with multiple annex forms&#xA;This code will look at each file&#xA;do nothing if there is only 1 page&#xA;split and delete parent if more than 2 pages" DisplayName="Split multi PDF file" sap:VirtualizedContainerService.HintSize="1076,704" sap2010:WorkflowViewState.IdRef="Sequence_53">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -220,13 +187,13 @@
           <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="[intCurrentPage]" DisplayName="For Each File" sap:VirtualizedContainerService.HintSize="575,529" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[new DirectoryInfo(IN_strAttachmentFolder).GetFiles().OrderBy(function(fi) fi.CreationTime)]">
+      <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="[intCurrentPage]" DisplayName="For Each File" sap:VirtualizedContainerService.HintSize="575,525" sap2010:WorkflowViewState.IdRef="ForEach`1_7" Values="[new DirectoryInfo(IN_strAttachmentFolder).GetFiles().OrderBy(function(fi) fi.CreationTime)]">
         <ui:ForEach.Body>
           <ActivityAction x:TypeArguments="si:FileInfo">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="si:FileInfo" Name="file" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="Split File" sap:VirtualizedContainerService.HintSize="539,394" sap2010:WorkflowViewState.IdRef="Sequence_52">
+            <Sequence DisplayName="Split File" sap:VirtualizedContainerService.HintSize="539,391" sap2010:WorkflowViewState.IdRef="Sequence_52">
               <Sequence.Variables>
                 <Variable x:TypeArguments="x:Int32" Name="intPageCount" />
                 <Variable x:TypeArguments="x:Int32" Name="intLoop" />
@@ -244,7 +211,7 @@
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </upap:GetPDFPageCount>
-              <Switch x:TypeArguments="x:Boolean" DisplayName="Switch multi page" Expression="[intPageCount &gt; 1]" sap:VirtualizedContainerService.HintSize="497,141" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+              <Switch x:TypeArguments="x:Boolean" DisplayName="Switch multi page" Expression="[intPageCount &gt; 1]" sap:VirtualizedContainerService.HintSize="497,138" sap2010:WorkflowViewState.IdRef="Switch`1_1">
                 <Switch.Default>
                   <ui:Continue sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Continue_1" />
                 </Switch.Default>
