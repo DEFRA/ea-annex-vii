@@ -311,7 +311,7 @@
             <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="CBool(jsonOutput(&quot;submit&quot;))" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
           </Transition.Condition>
           <Transition.To>
-            <State x:Name="__ReferenceID1" DisplayName="Get Next Case" sap:VirtualizedContainerService.HintSize="610,1594" sap2010:WorkflowViewState.IdRef="State_10">
+            <State x:Name="__ReferenceID1" DisplayName="Get Next Case" sap:VirtualizedContainerService.HintSize="160,81" sap2010:WorkflowViewState.IdRef="State_10">
               <State.Entry>
                 <TryCatch DisplayName="Try Get email" sap:VirtualizedContainerService.HintSize="564,1180" sap2010:WorkflowViewState.IdRef="TryCatch_6">
                   <sap:WorkflowViewStateService.ViewState>
@@ -368,30 +368,14 @@
                       </Assign>
                       <ui:InvokeWorkflowFile ContinueOnError="{x:Null}" DisplayName="Invoke Get email and save attachments" sap:VirtualizedContainerService.HintSize="484,87" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_8" UnSafe="False" WorkflowFileName="Sub Flows\Get email and save attachments.xaml">
                         <ui:InvokeWorkflowFile.Arguments>
-                          <InArgument x:TypeArguments="x:String" x:Key="IN_strEmailAccount">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="dictConfig(&quot;Email Account&quot;)" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="IN_strAttachmentFolder">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="dictConfig(&quot;Attachment Directory&quot;)" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="IN_strInProgressFolder">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="dictConfig(&quot;Email In Progress Folder&quot;)" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="x:String" x:Key="IN_strInboxFolder">
-                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="dictConfig(&quot;Email Inbox Folder&quot;)" />
-                          </InArgument>
-                          <OutArgument x:TypeArguments="snm:MailMessage" x:Key="OUT_mailCurrentEmail">
-                            <mva:VisualBasicReference x:TypeArguments="snm:MailMessage" ExpressionText="mailCurrentEmail" />
-                          </OutArgument>
-                          <OutArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:String))" x:Key="OUT_dictData">
-                            <mva:VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:String))" ExpressionText="dictPDFsData" />
-                          </OutArgument>
-                          <InArgument x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" x:Key="IN_dictConfig">
-                            <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" ExpressionText="dictConfig" />
-                          </InArgument>
-                          <InArgument x:TypeArguments="sn:NetworkCredential" x:Key="IN_credUserCredentials">
-                            <mva:VisualBasicValue x:TypeArguments="sn:NetworkCredential" ExpressionText="credSharepointPassword" />
-                          </InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="IN_strEmailAccount">[dictConfig("Email Account")]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="IN_strAttachmentFolder">[dictConfig("Attachment Directory")]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="IN_strInProgressFolder">[dictConfig("Email In Progress Folder")]</InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="IN_strInboxFolder">[dictConfig("Email Inbox Folder")]</InArgument>
+                          <OutArgument x:TypeArguments="snm:MailMessage" x:Key="OUT_mailCurrentEmail">[mailCurrentEmail]</OutArgument>
+                          <OutArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:String))" x:Key="OUT_dictData">[dictPDFsData]</OutArgument>
+                          <InArgument x:TypeArguments="scg:Dictionary(x:String, ui:GenericValue)" x:Key="IN_dictConfig">[dictConfig]</InArgument>
+                          <InArgument x:TypeArguments="sn:NetworkCredential" x:Key="IN_credUserCredentials">[credSharepointPassword]</InArgument>
                         </ui:InvokeWorkflowFile.Arguments>
                         <sap:WorkflowViewStateService.ViewState>
                           <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -533,7 +517,7 @@
                     <mva:VisualBasicValue x:TypeArguments="x:Boolean" ExpressionText="exeSystemException is Nothing" sap2010:WorkflowViewState.IdRef="VisualBasicValue`1_1" />
                   </Transition.Condition>
                   <Transition.To>
-                    <State x:Name="__ReferenceID3" DisplayName="Process Case" sap:VirtualizedContainerService.HintSize="145,83" sap2010:WorkflowViewState.IdRef="State_12">
+                    <State x:Name="__ReferenceID3" DisplayName="Process Case" sap:VirtualizedContainerService.HintSize="572,1532" sap2010:WorkflowViewState.IdRef="State_12">
                       <State.Entry>
                         <TryCatch DisplayName="Try Process Case" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="TryCatch_3">
                           <sap:WorkflowViewStateService.ViewState>
@@ -1140,7 +1124,7 @@
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
                       <State.Exit>
-                        <Sequence DisplayName="Move Mail, Reset Variables &amp; Clear attachments" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                        <Sequence DisplayName="Move Mail, Reset Variables &amp; Clear attachments" sap:VirtualizedContainerService.HintSize="526,1118" sap2010:WorkflowViewState.IdRef="Sequence_17">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="si:DirectoryInfo" Name="dirAttachmentFolder" />
                             <Variable x:TypeArguments="scg:List(snm:MailMessage)" Name="listMail" />
@@ -1148,20 +1132,30 @@
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                              <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                              <x:Boolean x:Key="IsPinned">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="1484,472" sap2010:WorkflowViewState.IdRef="TryCatch_13">
+                          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="484,419" sap2010:WorkflowViewState.IdRef="TryCatch_13">
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
                             <TryCatch.Try>
-                              <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="434,245" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_5" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SecurePassword="[credSharepointPassword.SecurePassword]" SharePointInstanceType="Online" URL="[dictConfig(&quot;Sharepoint URL&quot;)]" UserName="[credSharepointPassword.UserName]">
+                              <usa:SharepointApplicationScope AzureApplicationID="{x:Null}" ClientContext="{x:Null}" ClientId="{x:Null}" ClientSecret="{x:Null}" LoginTimeout="{x:Null}" Password="{x:Null}" AzureAppPermissions="None" DisplayName="Sharepoint application scope" sap:VirtualizedContainerService.HintSize="434,192" sap2010:WorkflowViewState.IdRef="SharepointApplicationScope_5" PlatformType="Online" QueryGrouping="False" ResetCredentials="False" SecurePassword="[credSharepointPassword.SecurePassword]" SharePointInstanceType="Online" URL="[dictConfig(&quot;Sharepoint URL&quot;)]" UserName="[credSharepointPassword.UserName]">
                                 <usa:SharepointApplicationScope.Body>
                                   <ActivityAction x:TypeArguments="us:SharePointContextInfo">
                                     <ActivityAction.Argument>
                                       <DelegateInArgument x:TypeArguments="us:SharePointContextInfo" Name="SharePointContextInfoTag" />
                                     </ActivityAction.Argument>
-                                    <usal:UploadFile AttachmentsAction="{x:Null}" PropertiesToAdd="{x:Null}" RelativeUrlHintText="{x:Null}" AllowOperationsOnASPXFiles="False" AllowOverwrite="True" CheckInFileAfterCreation="True" CheckOutFileBeforeOverwrite="False" ChooseFile="True" DisplayName="Upload file" sap:VirtualizedContainerService.HintSize="273,104" sap2010:WorkflowViewState.IdRef="UploadFile_6" LocalPath="[strAttachmentDirectory &amp; &quot;currentmail.eml&quot;]" LocalPathHintText="The current local path of the file" RelativeUrl="[string.format(dictConfig(&quot;Mail Save Path&quot;), Regex.Replace(Regex.Match(mailCurrentEmail.Sender.Address, &quot;(?&lt;=@).*?(?=\.)&quot;).Value, &quot;(#|%|\*|:|&lt;|&gt;|\?|\/|\|)&quot;,&quot;&quot;)) &amp; Convert.ToDateTime(mailCurrentEmail.Headers(&quot;Date&quot;)).ToString(&quot;yyyy.MM.dd&quot;) &amp; &quot; - &quot; &amp; Regex.Replace(mailCurrentEmail.Subject, &quot;(#|%|\*|:|&lt;|&gt;|\?|\/|\|)&quot;,&quot;&quot;) &amp; &quot;.eml&quot;]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
+                                    <usal:UploadFile AttachmentsAction="{x:Null}" PropertiesToAdd="{x:Null}" RelativeUrlHintText="{x:Null}" AllowOperationsOnASPXFiles="False" AllowOverwrite="True" CheckInFileAfterCreation="True" CheckOutFileBeforeOverwrite="False" ChooseFile="True" DisplayName="Upload file" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="UploadFile_6" LocalPath="[strAttachmentDirectory &amp; &quot;currentmail.eml&quot;]" LocalPathHintText="The current local path of the file" RelativeUrl="[string.format(dictConfig(&quot;Mail Save Path&quot;), Regex.Replace(Regex.Match(mailCurrentEmail.Sender.Address, &quot;(?&lt;=@).*?(?=\.)&quot;).Value, &quot;(#|%|\*|:|&lt;|&gt;|\?|\/|\|)&quot;,&quot;&quot;)) &amp; Convert.ToDateTime(mailCurrentEmail.Headers(&quot;Date&quot;)).ToString(&quot;yyyy.MM.dd&quot;) &amp; &quot; - &quot; &amp; Regex.Replace(mailCurrentEmail.Subject, &quot;(#|%|\*|:|&lt;|&gt;|\?|\/|\|)&quot;,&quot;&quot;) &amp; &quot;.eml&quot;]" ShowAttachFiles="False" ShowCAMLQuery="False" ShowCAMLWarning="False" ShowGroupDescription="False" ShowGroupName="False" ShowLibraryName="False" ShowListName="False" ShowLocalPath="True" ShowMove="False" ShowPermissionDropdown="False" ShowPropertiesDictionary="False" ShowRelativeUrl="True" ShowRename="False" ShowUserName="False" />
                                   </ActivityAction>
                                 </usa:SharepointApplicationScope.Body>
+                                <sap:WorkflowViewStateService.ViewState>
+                                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                                  </scg:Dictionary>
+                                </sap:WorkflowViewStateService.ViewState>
                               </usa:SharepointApplicationScope>
                             </TryCatch.Try>
                             <TryCatch.Catches>
@@ -1190,15 +1184,24 @@
                               </Catch>
                             </TryCatch.Catches>
                           </TryCatch>
-                          <If Condition="[exeSystemException is Nothing And exeBusinessRuleException is Nothing]" DisplayName="If no error" sap:VirtualizedContainerService.HintSize="1484,1118" sap2010:WorkflowViewState.IdRef="If_5">
+                          <ui:GetOutlookMailMessages Filter="{x:Null}" FilterByMessageIds="{x:Null}" TimeoutMS="{x:Null}" Account="[dictConfig(&quot;Email Account&quot;)]" DisplayName="Get IN Progress Mail" GetAttachements="False" sap:VirtualizedContainerService.HintSize="484,22" sap2010:WorkflowViewState.IdRef="GetOutlookMailMessages_1" MailFolder="[dictConfig(&quot;Email In Progress Folder&quot;)]" MarkAsRead="False" Messages="[listMail]" OnlyUnreadMessages="False" OrderByDate="OldestFirst" Top="1" />
+                          <Assign DisplayName="store in progress mail" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_79">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="snm:MailMessage">[mailCurrentEmail]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="snm:MailMessage">[listMail(0)]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <If Condition="[exeSystemException is Nothing And exeBusinessRuleException is Nothing]" DisplayName="If no error" sap:VirtualizedContainerService.HintSize="484,214" sap2010:WorkflowViewState.IdRef="If_5">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                             <If.Then>
-                              <Sequence DisplayName="Success" sap:VirtualizedContainerService.HintSize="376,171" sap2010:WorkflowViewState.IdRef="Sequence_25">
+                              <Sequence DisplayName="Success" sap:VirtualizedContainerService.HintSize="200,66" sap2010:WorkflowViewState.IdRef="Sequence_25">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -1208,7 +1211,7 @@
                               </Sequence>
                             </If.Then>
                             <If.Else>
-                              <If Condition="[exeSystemException isNot Nothing]" DisplayName="If system exception" sap:VirtualizedContainerService.HintSize="1063,970" sap2010:WorkflowViewState.IdRef="If_8">
+                              <If Condition="[exeSystemException isNot Nothing]" DisplayName="If system exception" sap:VirtualizedContainerService.HintSize="200,51" sap2010:WorkflowViewState.IdRef="If_8">
                                 <If.Then>
                                   <Sequence DisplayName="Mark as unread - app exception" sap:VirtualizedContainerService.HintSize="504,564" sap2010:WorkflowViewState.IdRef="Sequence_38">
                                     <sap:WorkflowViewStateService.ViewState>
@@ -1274,7 +1277,7 @@
                               </If>
                             </If.Else>
                           </If>
-                          <Assign DisplayName="Store Folder info" sap:VirtualizedContainerService.HintSize="1484,60" sap2010:WorkflowViewState.IdRef="Assign_34">
+                          <Assign DisplayName="Store Folder info" sap:VirtualizedContainerService.HintSize="484,60" sap2010:WorkflowViewState.IdRef="Assign_34">
                             <Assign.To>
                               <OutArgument x:TypeArguments="si:DirectoryInfo">[dirAttachmentFolder]</OutArgument>
                             </Assign.To>
@@ -1282,7 +1285,7 @@
                               <InArgument x:TypeArguments="si:DirectoryInfo">[New DirectoryInfo(strAttachmentDirectory)]</InArgument>
                             </Assign.Value>
                           </Assign>
-                          <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="{x:Null}" DisplayName="Delete each file" sap:VirtualizedContainerService.HintSize="1484,194" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[dirAttachmentFolder.GetFiles]">
+                          <ui:ForEach x:TypeArguments="si:FileInfo" CurrentIndex="{x:Null}" DisplayName="Delete each file" sap:VirtualizedContainerService.HintSize="484,51" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[dirAttachmentFolder.GetFiles]">
                             <ui:ForEach.Body>
                               <ActivityAction x:TypeArguments="si:FileInfo">
                                 <ActivityAction.Argument>
