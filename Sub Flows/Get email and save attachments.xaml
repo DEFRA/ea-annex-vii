@@ -9,7 +9,7 @@
     <x:Property Name="IN_dictConfig" Type="InArgument(scg:Dictionary(x:String, ui:GenericValue))" />
     <x:Property Name="IN_credUserCredentials" Type="InArgument(sn:NetworkCredential)" />
   </x:Members>
-  <sap:VirtualizedContainerService.HintSize>1108,15098</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1108,15365</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="52">
@@ -86,7 +86,7 @@
       <x:Boolean x:Key="ShouldCollapseAll">True</x:Boolean>
     </scg:Dictionary>
   </sap:WorkflowViewStateService.ViewState>
-  <Sequence DisplayName="Get mail and read attachment data" sap:VirtualizedContainerService.HintSize="1118,15033" sap2010:WorkflowViewState.IdRef="Sequence_7">
+  <Sequence DisplayName="Get mail and read attachment data" sap:VirtualizedContainerService.HintSize="1118,15300" sap2010:WorkflowViewState.IdRef="Sequence_7">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="strPDFText" />
       <Variable x:TypeArguments="x:Boolean" Name="booKeyExists" />
@@ -109,7 +109,7 @@
         <InArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:String))">[new Dictionary(of string, Dictionary(of string, string))]</InArgument>
       </Assign.Value>
     </Assign>
-    <Sequence DisplayName="Get mail and Save Attachments" sap:VirtualizedContainerService.HintSize="1076,848" sap2010:WorkflowViewState.IdRef="Sequence_5">
+    <Sequence DisplayName="Get mail and Save Attachments" sap:VirtualizedContainerService.HintSize="1076,1115" sap2010:WorkflowViewState.IdRef="Sequence_5">
       <Sequence.Variables>
         <Variable x:TypeArguments="scg:ICollection(x:String)" Name="listAttachments" />
         <Variable x:TypeArguments="x:String" Name="strAttName" />
@@ -124,21 +124,24 @@
           <x:Boolean x:Key="IsPinned">True</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:ExchangeScope ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" ExchangeService="{x:Null}" ExistingExchangeService="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" AuthenticationMode="UserNameAndPassword" DisplayName="Exchange Scope" Domain="DEMETER" ExchangeVersion="Exchange2013_SP1" sap:VirtualizedContainerService.HintSize="434,629" sap2010:WorkflowViewState.IdRef="ExchangeScope_1" SecurePassword="[IN_credUserCredentials.SecurePassword]" Server="https://outlook.office365.com/ews/exchange.asmx" User="[IN_credUserCredentials.UserName]">
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,61" sap2010:WorkflowViewState.IdRef="WriteLine_1" Text="[IN_credUserCredentials.UserName]" />
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,61" sap2010:WorkflowViewState.IdRef="WriteLine_2" Text="[IN_strEmailAccount]" />
+      <WriteLine DisplayName="Write Line" sap:VirtualizedContainerService.HintSize="434,61" sap2010:WorkflowViewState.IdRef="WriteLine_3" Text="[IN_strInboxFolder]" />
+      <ui:ExchangeScope ApplicationId="{x:Null}" DirectoryId="{x:Null}" EmailAutodiscover="{x:Null}" ExchangeService="{x:Null}" ExistingExchangeService="{x:Null}" Password="{x:Null}" TimeoutMS="{x:Null}" AuthenticationMode="UserNameAndPassword" DisplayName="Exchange Scope" Domain="DEMETER" ExchangeVersion="Exchange2013_SP1" sap:VirtualizedContainerService.HintSize="434,593" sap2010:WorkflowViewState.IdRef="ExchangeScope_1" SecurePassword="[IN_credUserCredentials.SecurePassword]" Server="https://outlook.office365.com/ews/exchange.asmx" User="[IN_credUserCredentials.UserName]">
         <ui:ExchangeScope.Body>
           <ActivityAction x:TypeArguments="mewd:ExchangeService">
             <ActivityAction.Argument>
               <DelegateInArgument x:TypeArguments="mewd:ExchangeService" Name="ExchangeConnection" />
             </ActivityAction.Argument>
-            <Sequence DisplayName="get and move mail" sap:VirtualizedContainerService.HintSize="376,503" sap2010:WorkflowViewState.IdRef="Sequence_56">
+            <Sequence DisplayName="get and move mail" sap:VirtualizedContainerService.HintSize="304,467" sap2010:WorkflowViewState.IdRef="Sequence_56">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                   <x:Boolean x:Key="IsPinned">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
-              <ui:GetExchangeMailMessages ApplicationId="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" FilterByMessageIds="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" User="{x:Null}" AuthenticationMode="UserNameAndPassword" CustomFolder="[IN_strInboxFolder]" DisplayName="Retry Point: Get Mail" ExchangeVersion="Exchange2013_SP1" FilterExpression="@SQL=urn:schemas:httpmail:hasattachment=true" GetAttachements="True" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="GetExchangeMailMessages_1" IsBodyHtml="False" MailFolder="Calendar" MarkAsRead="False" Messages="[listMessage]" OnlyUnreadMessages="False" OrderByDate="OldestFirst" SharedMailbox="[IN_strEmailAccount]" Top="1" />
-              <Assign DisplayName="Order by date received" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+              <ui:GetExchangeMailMessages ApplicationId="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" FilterByMessageIds="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" User="{x:Null}" AuthenticationMode="UserNameAndPassword" CustomFolder="[IN_strInboxFolder]" DisplayName="Retry Point: Get Mail" ExchangeVersion="Exchange2013_SP1" FilterExpression="Hasattachment:true" GetAttachements="True" sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="GetExchangeMailMessages_1" IsBodyHtml="False" MailFolder="Calendar" MarkAsRead="False" Messages="[listMessage]" OnlyUnreadMessages="False" OrderByDate="OldestFirst" SharedMailbox="[IN_strEmailAccount]" Top="1" />
+              <Assign DisplayName="Order by date received" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_2">
                 <Assign.To>
                   <OutArgument x:TypeArguments="scg:List(snm:MailMessage)">[listMessage]</OutArgument>
                 </Assign.To>
@@ -146,15 +149,16 @@
                   <InArgument x:TypeArguments="scg:List(snm:MailMessage)">[listMessage.OrderBy(function(m) m.Headers("DateReceived")).ToList]</InArgument>
                 </Assign.Value>
               </Assign>
-              <ui:MoveMessageToFolder ApplicationId="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" Server="{x:Null}" SharedMailbox="{x:Null}" TimeoutMS="{x:Null}" User="{x:Null}" AuthenticationMode="UserNameAndPassword" DisplayName="Move Exchange Mail Message" ExchangeVersion="Exchange2007_SP1" sap:VirtualizedContainerService.HintSize="334,87" sap2010:WorkflowViewState.IdRef="MoveMessageToFolder_1" MailFolder="[IN_strInProgressFolder]" MailMessage="[listMessage.Last]">
+              <ui:MoveMessageToFolder ApplicationId="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" User="{x:Null}" AuthenticationMode="UserNameAndPassword" DisplayName="Move Exchange Mail Message" ExchangeVersion="Exchange2013_SP1" sap:VirtualizedContainerService.HintSize="262,51" sap2010:WorkflowViewState.IdRef="MoveMessageToFolder_1" MailFolder="[IN_strInProgressFolder]" MailMessage="[listMessage.Last]" SharedMailbox="[IN_strEmailAccount]">
                 <sap:WorkflowViewStateService.ViewState>
                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsPinned">True</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
                   </scg:Dictionary>
                 </sap:WorkflowViewStateService.ViewState>
               </ui:MoveMessageToFolder>
-              <ui:GetExchangeMailMessages ApplicationId="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" FilterByMessageIds="{x:Null}" FilterExpression="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" User="{x:Null}" AuthenticationMode="UserNameAndPassword" CustomFolder="[IN_strInProgressFolder]" DisplayName="Retry Point: Get Mail" ExchangeVersion="Exchange2013_SP1" GetAttachements="True" sap:VirtualizedContainerService.HintSize="334,22" sap2010:WorkflowViewState.IdRef="GetExchangeMailMessages_2" IsBodyHtml="False" MailFolder="Calendar" MarkAsRead="False" Messages="[listMessage]" OnlyUnreadMessages="False" OrderByDate="OldestFirst" SharedMailbox="[IN_strEmailAccount]" Top="1" />
-              <Assign DisplayName="Store current mail" sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+              <ui:GetExchangeMailMessages ApplicationId="{x:Null}" DirectoryId="{x:Null}" Domain="{x:Null}" EmailAutodiscover="{x:Null}" FilterByMessageIds="{x:Null}" FilterExpression="{x:Null}" Password="{x:Null}" SecurePassword="{x:Null}" Server="{x:Null}" TimeoutMS="{x:Null}" User="{x:Null}" AuthenticationMode="UserNameAndPassword" CustomFolder="[IN_strInProgressFolder]" DisplayName="Retry Point: Get Mail" ExchangeVersion="Exchange2013_SP1" GetAttachements="True" sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="GetExchangeMailMessages_2" IsBodyHtml="False" MailFolder="Calendar" MarkAsRead="False" Messages="[listMessage]" OnlyUnreadMessages="False" OrderByDate="OldestFirst" SharedMailbox="[IN_strEmailAccount]" Top="1" />
+              <Assign DisplayName="Store current mail" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_1">
                 <Assign.To>
                   <OutArgument x:TypeArguments="snm:MailMessage">[OUT_mailCurrentEmail]</OutArgument>
                 </Assign.To>

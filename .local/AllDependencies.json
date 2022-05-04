@@ -4733,15 +4733,15 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\m1005058\\.nuget\\packages\\": {}
+    "C:\\Users\\jsavory\\.nuget\\packages\\": {}
   },
   "project": {
     "restore": {
       "projectUniqueName": "EA-Annex-VII",
       "projectName": "EA-Annex-VII",
-      "projectPath": "C:\\UiPath\\ea-annex-vii\\.local",
-      "packagesPath": "C:\\Users\\m1005058\\.nuget\\packages\\",
-      "outputPath": "C:\\UiPath\\ea-annex-vii\\.local"
+      "projectPath": "C:\\Users\\jsavory\\Documents\\GitHub\\ea-annex-vii\\.local",
+      "packagesPath": "C:\\Users\\jsavory\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\jsavory\\Documents\\GitHub\\ea-annex-vii\\.local"
     },
     "frameworks": {
       "net461": {
